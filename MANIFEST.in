@@ -3,7 +3,6 @@ include README.md
 include LICENSE
 include CONTRIBUTING.md
 include ARCHITECTURE.md
-include REFACTORING.md
 include requirements.txt
 
 # Include all files in these directories
@@ -11,9 +10,8 @@ recursive-include modules *.py
 recursive-include examples *.py
 recursive-include tutorials *.ipynb
 recursive-include docs *.rst *.md *.txt
-recursive-include legacy *.py *.md
-recursive-include compat *.py *.md
-recursive-include dev *.ipynb *.md
+recursive-include pdb_files *.prepi *.pdb *.csv
+recursive-include bin *.sh *.yml
 
 # Exclude unnecessary files
 global-exclude __pycache__

@@ -48,6 +48,7 @@ htmlcov/
 
 # Sphinx Documentation
 docs/_build/
+docs/_static/
 docs/.doctrees/
 
 # Project-specific

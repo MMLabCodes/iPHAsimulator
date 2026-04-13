@@ -1,12 +1,13 @@
-Overview of modules
-===================
+Package Contents
+================
 
-With the amount of code in this package, it is useful to introduce the different python modules and functionalites within the package before diving in depth into how to use them with further documentation and tutorials.
+A brief introduction to each module in iPHAsimulator before diving into the
+detailed guides and tutorials.
 
+filepath_manager
+----------------
 
-*Note: All modules are prefixed by "sw_" in homage to the use of supercomputing wales in its initial creation.*
-
-sw_directories
+``filepath_manager``
 --------------
 
 **sw_directories** is a filepath manager and is the workhorse of this package. This package is designed so that all of the code 
