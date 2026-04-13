@@ -1,6 +1,6 @@
 # Module Guide
 
-This directory contains all core functionality modules for the SatisPHAction Simulator.
+This directory contains all core functionality modules for the iPHAsimulator.
 
 ## Module Organization
 

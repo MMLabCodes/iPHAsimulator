@@ -1,35 +1,28 @@
 """
-Quantum chemistry molecule representation and utilities.
+iPHAsimulator - Quantum Chemistry Results Module.
 
-This module provides classes and utilities for representing and processing
-molecules with quantum chemical properties calculated using ORCA. It includes
-a molecule class with properties like energy, orbital energies, and polarizability,
-plus utilities for loading molecule data from CSV files.
+This module provides data containers for quantum chemistry results calculated
+using ORCA. It stores molecular electronic properties such as orbital energies,
+dipole moments, and polarizabilities.
 
-Example:
-    Working with quantum chemistry data::
+Main Components:
+    OrcaMolecule          - Dataclass holding all ORCA DFT results for one molecule
+    csv_to_orca_molecules - Load multiple molecules from a CSV summary file
 
-        from modules.quantum_calculator import OrcaMolecule, csv_to_orca_molecules
+Example::
 
-        # Create a molecule from ORCA data
-        mol = OrcaMolecule(
-            name='ethane',
-            smiles='CC',
-            mw=30.07,
-            peak_area=1000,
-            total_energy=-79.5,
-            homo_lumo_gap=8.5,
-            chemical_hardness=4.25,
-            dipole_moment=0.0,
-            polarizability=11.5,
-            volume=100.0
-        )
+    from modules.quantum_calculator import OrcaMolecule, csv_to_orca_molecules
 
-        # Load molecules from CSV file
-        molecules = csv_to_orca_molecules('/path/to/data.csv')
+    # Load ORCA results from a CSV file produced after DFT calculations
+    molecules = csv_to_orca_molecules('/path/to/orca_results.csv')
+
+    for mol in molecules:
+        print(f'{mol.name}: HOMO-LUMO gap = {mol.homo_lumo_gap:.2f} eV')
 
 Note:
-    This module requires RDKit for SMILES processing and volume calculations.
+    The CSV file must have 11 columns in the following order:
+    name, smiles, mw, peak_area, total_energy, homo_lumo_gap,
+    chemical_hardness, dipole_moment, polarizability, (reserved), (reserved)
 """
 
 import csv

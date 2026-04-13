@@ -3,9 +3,9 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "satisfaction-simulator"
+name = "iPHAsimulator"
 version = "1.1.0"
-description = "SatisPHAction Simulator: Molecular Dynamics simulations for polyhydroxyalkanoate (PHA) systems"
+description = "iPHAsimulator: Build PHA polymer structures and run DFT calculations or MD simulations"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
@@ -78,15 +78,15 @@ dev = [
     "mypy>=0.900",
 ]
 all = [
-    "satisfaction-simulator[simulation,quantum,docs,dev]",
+    "iPHAsimulator[simulation,quantum,docs,dev]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/MMLabCodes/polymersimulator"
-Documentation = "https://polymersimulator.readthedocs.io/"
-Repository = "https://github.com/MMLabCodes/polymersimulator.git"
-"Issue Tracker" = "https://github.com/MMLabCodes/polymersimulator/issues"
-Changelog = "https://github.com/MMLabCodes/polymersimulator/releases"
+Homepage = "https://github.com/MMLabCodes/iPHAsimulator"
+Documentation = "https://github.com/MMLabCodes/iPHAsimulator#readme"
+Repository = "https://github.com/MMLabCodes/iPHAsimulator.git"
+"Issue Tracker" = "https://github.com/MMLabCodes/iPHAsimulator/issues"
+Changelog = "https://github.com/MMLabCodes/iPHAsimulator/releases"
 
 [tool.black]
 line-length = 100

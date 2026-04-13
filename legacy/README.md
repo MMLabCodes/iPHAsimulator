@@ -1,6 +1,6 @@
 # Legacy Code Archive
 
-This directory contains deprecated code from SatisPHAction Simulator that is no longer actively maintained.
+This directory contains deprecated code from iPHAsimulator that is no longer actively maintained.
 
 ## Contents
 
@@ -47,5 +47,5 @@ Do NOT add new functionality to this folder. If you need to fix or extend functi
 
 ---
 
-**Version**: SatisPHAction Simulator v1.1+
+**Version**: iPHAsimulator v1.1+
 **Last Updated**: 2026-04-04

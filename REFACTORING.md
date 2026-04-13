@@ -1,9 +1,9 @@
-# SatisPHAction Simulator - Refactoring Report
+# iPHAsimulator - Refactoring Report
 
 ## Overview
-This document tracks the comprehensive refactoring of the PolymerSimulator project to become **SatisPHAction Simulator**, a professional open-source package for simulating polyhydroxyalkanoate (PHA) systems and polymers.
+This document tracks the comprehensive refactoring of the PolymerSimulator project to become **iPHAsimulator**, a professional open-source package for simulating polyhydroxyalkanoate (PHA) systems and polymers.
 
-**Refactoring Branch**: `refactor/satisfaction-simulator`
+**Refactoring Branch**: `refactor/iPHAsimulator`
 **Status**: In Progress
 **Target Completion**: Iterative phases (8 phases total)
 
@@ -13,7 +13,7 @@ This document tracks the comprehensive refactoring of the PolymerSimulator proje
 1. **Consistency**: Standardize naming conventions across the project
 2. **Documentation**: Add comprehensive docstrings and code documentation
 3. **Maintainability**: Remove deprecated code and improve code organization
-4. **Branding**: Complete rebranding from "Polymer Simulator" to "SatisPHAction Simulator"
+4. **Branding**: Complete rebranding from "Polymer Simulator" to "iPHAsimulator"
 5. **Community**: Make the project accessible and welcoming for open-source contributions
 
 ---
@@ -67,7 +67,7 @@ sw_depreceated.py               → /legacy/deprecated_functions.py
 - ✅ **Deprecated Code**: Archived to `/legacy/` with migration guides
 
 #### Branding
-- ✅ **Project Name**: Updated to "SatisPHAction Simulator"
+- ✅ **Project Name**: Updated to "iPHAsimulator"
 - ✅ **Documentation**: Updated to reflect new name and PHA focus
 - ✅ **Project Context**: Enhanced with clear explanation of purpose
 
@@ -257,8 +257,8 @@ This refactoring maintains the excellent work done by the original Authors while
 - Issue tracker
 - Project documentation
 
-**Project**: SatisPHAction Simulator (formerly PolymerSimulator)
-**Branch**: `refactor/satisfaction-simulator`
+**Project**: iPHAsimulator (formerly PolymerSimulator)
+**Branch**: `refactor/iPHAsimulator`
 **Status**: ✅ SUBSTANTIALLY COMPLETE - Core refactoring and documentation phases finished
 
 ---
@@ -293,7 +293,7 @@ This refactoring maintains the excellent work done by the original Authors while
 **Phase 5: Branding & Documentation (✅ Complete)**
 - Updated README.md with new project name
 - Updated Sphinx documentation configuration
-- Rebranded all references from "Polymer Simulator" to "SatisPHAction Simulator"
+- Rebranded all references from "Polymer Simulator" to "iPHAsimulator"
 - Updated docs with new module names and examples
 
 **Phase 6: Examples & Tutorials (✅ Complete)**

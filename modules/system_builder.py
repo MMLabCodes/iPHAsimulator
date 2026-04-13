@@ -1,30 +1,39 @@
 # -*- coding: utf-8 -*-
 """
-System Builder Module - Core MD System Building Functionality.
+iPHAsimulator - System Builder Module.
 
-This module provides comprehensive tools for building and preparing molecular dynamics systems,
-including:
+This module is the core of the iPHAsimulator workflow. It handles everything
+needed to go from a chemical description (SMILES string) to a fully
+parameterised system ready for MD simulation.
 
-- Converting SMILES strings to 3D molecular structures
-- Generating and managing residue codes for custom molecules
-- Running Packmol for molecular system assembly
-- Parameterizing molecules with AMBER forcefields (GAFF, GAFF2)
-- Building homopolymers and co-polymers
-- Molecular alignment and coordinate manipulation
-- PDB file processing and validation
+Key Capabilities:
+    - Convert SMILES strings to 3D PDB structure files (using Open Babel)
+    - Assign unique three-letter residue codes to each molecule
+    - Run AmberTools (antechamber + tleap) to parameterise molecules with GAFF/GAFF2
+    - Build polymer chains and multi-chain arrays using Packmol
+    - Convert PDB files to XYZ format for DFT input generation
 
 Key Classes:
-    BuildSystems: Base class for molecular system construction from SMILES strings
-    BuildAmberSystems: AMBER-specific system building with forcefield parameterization
-    PrepPackmolForAmber: Utility class for preparing Packmol input files
+    BuildSystems       - Base class: SMILES to PDB and residue code management
+    BuildAmberSystems  - AMBER-specific: parameterisation and polymer array building
+    PrepPackmolForAmber- Utility: generate Packmol input scripts
 
-Example:
-    >>> from modules.system_builder import BuildSystems
-    >>> builder = BuildSystems(manager)
-    >>> pdb_file = builder.smiles_to_pdb_gen_res_code(smiles="CC", name="ethane")
+Typical Usage::
 
-Created on Tue Mar 19 10:00:30 2024
-@author: danie
+    from modules.filepath_manager import PolySimManage
+    from modules.system_builder import BuildAmberSystems
+
+    manager = PolySimManage('/path/to/my_project')
+    builder = BuildAmberSystems(manager)
+
+    # Step 1: generate a 3D structure from a SMILES string
+    builder.SmilesToPDB_GenResCode(smiles='CC(O)CC(=O)O', name='3HB')
+
+    # Step 2: parameterise with the AMBER GAFF2 force field
+    builder.parameterize_mol(name='3HB', charge=0)
+
+    # Step 3: build a 3x3 array of 10-unit polymer chains
+    builder.gen_3_3_array(name='3HB', n_units=10, n_chains_x=3, n_chains_y=3)
 """
 
 from typing import Optional, List, Tuple, Dict, Any, Union

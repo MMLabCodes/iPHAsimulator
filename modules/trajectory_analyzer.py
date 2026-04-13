@@ -1,45 +1,45 @@
 # -*- coding: utf-8 -*-
 """
-Trajectory Analyzer Module - MD Trajectory Analysis and Molecular Properties.
+iPHAsimulator - MD Trajectory Analyser.
 
-This module provides comprehensive trajectory analysis tools for molecular dynamics simulations,
-including:
+This module provides tools for loading and analysing MD simulation trajectories
+produced from PHA polymer simulations. It uses MDAnalysis for trajectory
+parsing and NumPy/SciPy for numerical calculations.
 
-- Universe classes for molecular trajectory management:
-    * Universe: Base trajectory analysis class
-    * poly_Universe: Polymer-specific trajectory analysis
-    * bio_oil_Universe: Bio-oil/complex mixture trajectory analysis
-- Analysis class: Core analysis methods for molecular properties
-- master_poly_anal: Master polymer analysis coordinator
-- master_bio_oil_anal: Master bio-oil analysis coordinator
-- universe_coord_extraction: Coordinate extraction utilities
+Key Classes:
+    poly_Universe      - Load and manage polymer trajectory data
+    bio_oil_Universe   - Load and manage bio-oil/complex mixture trajectory data
+    Universe           - Base trajectory wrapper
+    Analysis           - Core methods for computing molecular properties
+    master_poly_anal   - High-level coordinator for polymer trajectory analysis
 
-Analysis capabilities:
-- Radius of gyration (ROG) calculations
-- End-to-end distance distributions
-- Persistence length calculations
-- Free volume calculations
-- Thermal expansion coefficient determination
-- Glass transition temperature (Tg) prediction
-- Diffusion coefficient calculations
-- Structural analysis and visualization
-- Coordinate manipulation and export
+Analysis Capabilities:
+    Structural:   Radius of gyration, end-to-end distance, persistence length
+    Thermodynamic: Free volume, thermal expansion coefficient
+    Transitions:  Glass transition temperature (Tg)
+    Transport:    Diffusion coefficients (from MSD)
 
-Dependencies:
-    - MDAnalysis: Trajectory parsing and atom selection
-    - NumPy, SciPy: Numerical calculations
-    - Matplotlib, Seaborn: Visualization
-    - RDKit, OpenBabel: Chemical structure handling
-    - scikit-learn: Machine learning for curve fitting
+Example::
 
-Example:
-    >>> from modules.trajectory_analyzer import poly_Universe, Analysis
-    >>> universe = poly_Universe(manager, system_name, base_molecule, sim_dir)
-    >>> analysis = Analysis(universe)
-    >>> rog = analysis.plot_ROG(plot=True)
+    from modules.filepath_manager import PolySimManage
+    from modules.trajectory_analyzer import poly_Universe, Analysis
 
-Created on Tue Jun  4 11:13:57 2024
-@author: danie
+    manager = PolySimManage('/path/to/my_project')
+
+    # Load the simulation trajectory
+    universe = poly_Universe(
+        manager=manager,
+        system_name='3HB_3x3_array',
+        base_molecule='3HB',
+        sim_dir='/path/to/simulation/output'
+    )
+
+    analysis = Analysis(universe)
+
+    # Calculate structural and thermodynamic properties
+    rog = analysis.plot_ROG(plot=True)
+    tg  = analysis.get_tg()
+    print(f'Estimated Tg: {tg:.1f} K')
 """
 
 from typing import Optional, List, Tuple, Dict, Any, Union

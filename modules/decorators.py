@@ -1,23 +1,24 @@
 """
-Custom decorators for controlling method behavior and state.
+iPHAsimulator - Internal Utility Decorators.
 
-This module provides utility decorators for managing method calls, including
-tracking method invocation chains and modifying behavior based on call context.
+This module provides Python decorators used internally by other iPHAsimulator
+modules to control method behaviour.
 
-Example:
-    Using the call_from_method decorator::
+You will not normally need to use this module directly unless you are
+extending iPHAsimulator with new classes.
 
-        from modules.decorators import CustomDecorators
+Example::
 
-        class MyClass:
-            @CustomDecorators.call_from_method
-            def my_method(self):
-                if self.called_from_another_method:
-                    print("Called from another method")
-                return "result"
+    from modules.decorators import CustomDecorators
 
-        obj = MyClass()
-        result = obj.my_method()
+    class MyBuilder:
+        @CustomDecorators.call_from_method
+        def build(self):
+            # self.called_from_another_method is True when called from
+            # another method on the same object, False when called directly
+            if self.called_from_another_method:
+                return  # skip internal steps when called internally
+            # ... run the full build process ...
 """
 
 from typing import Callable, Any

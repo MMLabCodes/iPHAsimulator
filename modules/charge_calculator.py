@@ -1,38 +1,45 @@
 """
-Charge calculation and benchmarking for molecular systems.
+iPHAsimulator - Atomic Partial Charge Calculator.
 
-This module provides tools for calculating and comparing atomic partial charges
-using various methods including GAFF force fields, NAGL machine learning models,
-and MBIS calculations. It includes utilities for extracting charges from different
-file formats and visualizing comparisons.
+This module calculates and compares atomic partial charges using several
+methods. Accurate partial charges are essential for producing a correct
+AMBER force field parameterisation of your PHA molecule.
 
-Supported Charge Calculation Methods:
-    - GAFF/GAFF2 with various charge models (BCC)
-    - NAGL (machine learning-based charge assignment)
-    - MBIS (Minimal Basis Iterative Subspace)
-    - MULLIKEN (from ORCA DFT calculations)
+Supported Charge Models:
+    GAFF / GAFF2 with BCC  - Standard AMBER semi-empirical charge method
+    NAGL                    - Machine-learning charge model (OpenFF)
+    MBIS                    - Quantum theory of atoms in molecules charges
+    MULLIKEN                - Charges from ORCA DFT calculations
 
-Example:
-    Benchmark charges for a molecule::
+The ChargeCalculator class requires a PolySimManage object (project directory
+manager) along with the molecule name and its SMILES string.
 
-        from modules.charge_calculator import ChargeCalculator
+Example::
 
-        calculator = ChargeCalculator(
-            manager=dirs,
-            molecule_name='ethane',
-            smiles='CC'
-        )
+    from modules.filepath_manager import PolySimManage
+    from modules.charge_calculator import ChargeCalculator
 
-        # Calculate charges using different methods
-        calculator.calculate_all_semi_charge()
-        calculator.calculate_nagl_charge()
+    manager = PolySimManage('/path/to/my_project')
 
-        # Plot and save results
-        calculator.plot_charges()
-        calculator.save_charges_to_csv()
+    calc = ChargeCalculator(
+        manager=manager,
+        molecule_name='3HB',
+        smiles='CC(O)CC(=O)O'
+    )
+
+    # Calculate BCC charges via GAFF and GAFF2
+    calc.calculate_all_semi_charge()
+
+    # Optionally calculate ML-based NAGL charges
+    calc.calculate_nagl_charge()
+
+    # Save all charge sets to a CSV and generate a comparison plot
+    calc.save_charges_to_csv()
+    calc.plot_charges()
 
 Note:
-    Requires OpenForceField toolkit and optional MBIS calculation support.
+    NAGL requires the OpenForceField toolkit (openff-toolkit).
+    MBIS requires an additional external script configured via modules.config.
 """
 
 import os
@@ -145,7 +152,7 @@ class ChargeCalculator:
             self.mbis_script_path: str = config.get('mbis_script_path', None)
             self.naglmbis_dir: str = config.get('naglmbis_dir', None)
             if not self.mbis_script_path:
-                print("Warning: SATISFACTION_MBIS_SCRIPT environment variable not set")
+                print("Warning: IPHSIMULATOR_MBIS environment variable not set")
             if not self.naglmbis_dir:
                 print("Warning: NAGLMBIS_DIR environment variable not set")
         except ImportError:

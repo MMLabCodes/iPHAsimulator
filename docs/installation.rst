@@ -1,7 +1,7 @@
 Installation
 ============
 
-The **SatisPHAction Simulator** package is designed to work in a Unix-like shell (Linux, macOS).
+The **iPHAsimulator** package is designed to work in a Unix-like shell (Linux, macOS).
 
 If you are on **Windows**, we recommend installing **Miniconda** inside **Ubuntu** (via WSL) to ensure compatibility:
 
@@ -19,7 +19,7 @@ Clone the GitHub repository to access the Python modules.
 
 **Method 1: Standard Clone**
 
-1. Go to the repo: https://github.com/MMLabCodes/polymersimulator  
+1. Go to the repo: https://github.com/MMLabCodes/iPHAsimulator  
 2. Click the blue **<> Code** button, select **HTTPS**, and copy the link.  
 3. From your terminal (Ubuntu/WSL), run:
 
@@ -40,8 +40,8 @@ If the standard method fails, you can use a GitHub personal access token:
 
 .. code-block:: bash
 
-   git clone https://USERNAME:YOUR_TOKEN@github.com/MMLabCodes/polymersimulator.git
-   cd polymersimulator
+   git clone https://USERNAME:YOUR_TOKEN@github.com/MMLabCodes/iPHAsimulator.git
+   cd iPHAsimulator
 
 The final ``cd`` command places you inside the repo where tutorials and scripts are stored.
 

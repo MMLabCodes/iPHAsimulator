@@ -2,7 +2,7 @@ Analysing Polymer Simulations: Walkthrough
 ===========================================
 
 .. important::
-   All notebooks and code should be run from the home directory: **~/polymersimulator**.
+   All notebooks and code should be run from the home directory: **~/iPHAsimulator**.
    Running code from other directories may cause issues with file paths and prevent required Python modules from being loaded.
 
 This guide will cover how to set up and run some pre-defined analysis techniques on a polymer system after an MD simulation. It is also recommended that
@@ -12,7 +12,7 @@ The associated notebooks can be found in the `/tutorials/` folder:
 - **Tutorial_10_Analysis_module.ipynb** - Main analysis module tutorial
 - **Tutorial_11_Analysis_module_2.ipynb** - Advanced analysis topics
 
-If you are unsure how to launch jupyter notebook, refer to the `installation guide <https://polymersimulator.readthedocs.io/en/latest/installation.html#launching-jupyter-notebook>`_.
+If you are unsure how to launch jupyter notebook, refer to the `installation guide <https://iPHAsimulator.readthedocs.io/en/latest/installation.html#launching-jupyter-notebook>`_.
 
 .. note::
    These analysis methods are optimized for monodisperse homopolymer systems. Support for other types of systems (mixing polymer types and lengths) will be expanded in future releases.
@@ -57,18 +57,18 @@ Required arguments to initialize a universe object:
 5. The length of the polymers in the system
 6. The type of files the simulation was launched with
 
-As an example, files of a system called **3HB_10_polymer_25_amorph** can be found in the polymersimulator repository. This system is:
+As an example, files of a system called **3HB_10_polymer_25_amorph** can be found in the iPHAsimulator repository. This system is:
 
 - 25 3HB decamers
 - Amorphous (starting structure generated with Polyply)
 
-Within the standard polymersimulator file structure all the files related to this system are found at **~/polymersimulator/pdb_files/systems/3HB_10_polymer_25_amorph**. Inside of this folder, various things can be found:
+Within the standard iPHAsimulator file structure all the files related to this system are found at **~/iPHAsimulator/pdb_files/systems/3HB_10_polymer_25_amorph**. Inside of this folder, various things can be found:
 
 - Topology files
 - Coordinate files
 - Timestamped folders for any simulations
 
-An example is shown below. Highlighted in blue are the general files for the system (topologies and coordinates); highlighted in orange is a folder for a specific simulation folder containing data files, trajectories and output graphs; highlighted in yellow is the location of this file within the polymersimulator file structure.
+An example is shown below. Highlighted in blue are the general files for the system (topologies and coordinates); highlighted in orange is a folder for a specific simulation folder containing data files, trajectories and output graphs; highlighted in yellow is the location of this file within the iPHAsimulator file structure.
 
 .. image:: images/simulation_folder.png
 

@@ -14,7 +14,7 @@ DEPRECATION NOTICE:
 """
 
 # Import all functions from the new module for backward compatibility
-from .molecule_builder import (
+from modules.molecule_builder import (
     vol_from_smiles,
     vol_from_mol,
     vol_from_pdb,

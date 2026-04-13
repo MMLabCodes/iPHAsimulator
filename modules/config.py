@@ -2,26 +2,25 @@
 Configuration Module - Paths and External Tool Configuration.
 
 This module manages configuration for external tools and file paths used by
-the SatisPHAction Simulator. References can be set via environment variables,
-configuration file, or code.
+iPHAsimulator. Tool paths can be set via environment variables, a JSON config
+file, or by calling create_config_file() once.
 
-Environment Variables (checked in order):
-    - SATISFACTION_CONFIG: Path to config file
-    - PACKMOL_PATH: Path to packmol executable
-    - AMBER_HOME: Path to AmberTools installation
-    - ORCA_PATH: Path to ORCA quantum chemistry software
-    - NAGLMBIS_DIR: Path to NAGL MBIS directory
-    - SATISFACTION_MBIS_SCRIPT: Path to MBIS calculation script
-    - SATISFACTION_EM_MDP: Path to energy minimization parameters file
+Environment Variables (checked in priority order):
+    IPHSIMULATOR_CONFIG   : Path to a JSON config file (overrides all other vars)
+    PACKMOL_PATH          : Path to the packmol executable
+    AMBER_HOME            : Path to your AmberTools installation directory
+    ORCA_PATH             : Path to the ORCA quantum chemistry executable
+    NAGLMBIS_DIR          : Directory containing NAGL MBIS scripts
+    IPHSIMULATOR_MBIS     : Path to the MBIS calculation script
 
-Example:
-    >>> from modules.config import get_packmol_path, get_config
-    >>> packmol = get_packmol_path()
-    >>> config = get_config()
-    >>> mbis_script = config['mbis_script_path']
+One-time setup (run once, saves to a JSON file):
+    >>> from modules.config import create_config_file
+    >>> create_config_file(packmol_path='/usr/local/bin/packmol')
 
-Created on April 4, 2026
-@author: SatisPHAction Simulator Team
+Runtime usage:
+    >>> from modules.config import get_packmol_path, get_amber_home
+    >>> packmol = get_packmol_path()   # returns path string or None
+    >>> amber   = get_amber_home()     # returns AMBER_HOME path or None
 """
 
 import os
@@ -35,7 +34,7 @@ _DEFAULT_CONFIG = {
     "amber_home": os.environ.get("AMBER_HOME", None),
     "orca_path": os.environ.get("ORCA_PATH", None),
     "naglmbis_dir": os.environ.get("NAGLMBIS_DIR", None),
-    "mbis_script_path": os.environ.get("SATISFACTION_MBIS_SCRIPT", None),
+    "mbis_script_path": os.environ.get("IPHSIMULATOR_MBIS", None),
 }
 
 _config: Optional[Dict[str, Any]] = None
@@ -50,7 +49,7 @@ def _load_config() -> Dict[str, Any]:
         config["packmol_path"] = os.environ["PACKMOL_PATH"]
 
     # Check for config file
-    config_file = os.environ.get("SATISFACTION_CONFIG")
+    config_file = os.environ.get("IPHSIMULATOR_CONFIG")
     if config_file and os.path.exists(config_file):
         try:
             with open(config_file, 'r') as f:
@@ -138,7 +137,7 @@ def get_mbis_script_path() -> str:
 
     if not path:
         raise ValueError(
-            "MBIS script path not configured. Set SATISFACTION_MBIS_SCRIPT "
+            "MBIS script path not configured. Set IPHSIMULATOR_MBIS "
             "environment variable"
         )
 

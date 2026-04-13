@@ -1,4 +1,4 @@
-# SatisPHAction Simulator Tutorials
+# iPHAsimulator Tutorials
 
 Welcome to the tutorial collection! This folder contains comprehensive Jupyter notebook tutorials organized by topic and complexity level.
 
@@ -119,14 +119,14 @@ jupyter notebook Tutorial_1_filepath_manager.ipynb
 
 ## Requirements
 
-All tutorials require the SatisPHAction Simulator environment:
+All tutorials require the iPHAsimulator environment:
 
 ```bash
-conda create -n satisfaction -c conda-forge python=3.9
-conda activate satisfaction
+conda create -n iphAsimulator -c conda-forge python=3.9
+conda activate iphAsimulator
 conda install -c conda-forge ambertools openmm rdkit openbabel mdanalysis
 git clone <repo-url>
-cd satisfaction-simulator
+cd iPHAsimulator
 pip install -e .
 ```
 

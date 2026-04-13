@@ -29,7 +29,7 @@ warnings.warn(
 )
 
 # Import all deprecated functions from the new location
-from ..legacy.deprecated_functions import (
+from legacy.deprecated_functions import (
     build_3_3_polymer_array_old,
     gen_3_3_array,
     gen_2_2_array,

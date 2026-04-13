@@ -1,6 +1,6 @@
 # Development Notebooks
 
-This folder contains development and experimental notebooks used during the refactoring of the SatisPHAction Simulator project.
+This folder contains development and experimental notebooks used during the refactoring of the iPHAsimulator project.
 
 ## Contents
 

@@ -22,7 +22,7 @@ sys.modules['pybel'] = mock.MagicMock()
 #from sw_orca import *
 
 # Project information
-project = 'SatisPHAction Simulator'
+project = 'iPHAsimulator'
 copyright = '2024-2026, Daniel J. York, Isaac Vidal-Daza, Francisco Martin-Martinez'
 author = 'Daniel J. York, Isaac Vidal-Daza'
 release = '0.1.0'

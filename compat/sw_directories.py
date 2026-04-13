@@ -1,20 +1,15 @@
 """
-Backward compatibility module for sw_directories.
+iPHAsimulator - Backward Compatibility Shim for sw_directories.
 
-This module maintains backward compatibility with code that imports from
-the old sw_directories module. All functionality has been refactored into
-the filepath_manager module with improved organization, type hints, and
-documentation.
+This module maintains backward compatibility for code that imports from
+the old 'sw_directories' module name. All functionality is now in
+modules.filepath_manager.
 
-For new code, import directly from filepath_manager:
-    from modules.filepath_manager import PolySimManage, PolyDataDirs
+For new code, use:
+    from modules.filepath_manager import PolySimManage
 
-For legacy code, this module provides the same exports:
-    from modules.sw_directories import PolySimManage, PolyDataDirs
-
-Deprecated:
-    This module is maintained for backward compatibility only.
-    New code should import from modules.filepath_manager instead.
+For legacy code, this module still works:
+    from compat.sw_directories import PolySimManage
 """
 
 # Import all public classes and functions from the refactored module
@@ -24,7 +19,6 @@ from modules.filepath_manager import (
     BioOilDirs,
     ComplexModelDirs,
     DFTManager,
-    DEFAULT_PACKMOL_PATH,
     DEFAULT_MAX_DFT_JOBS,
     DEFAULT_DFT_NPROCS,
     DEPRECATED_DIR_NAME,

@@ -4,9 +4,9 @@ Created on Mon Feb 12 12:04:03 2024
 
 @author: 983045
 """
-from simtk.openmm import app
-import simtk.openmm as mm
-from simtk import unit
+from openmm import app
+import openmm as mm
+from openmm import unit
 import sys
 import os
 '''

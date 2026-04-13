@@ -1,37 +1,44 @@
 """
-File path and directory management for polymer simulation projects.
+iPHAsimulator - Project Directory and File Manager.
 
-This module provides comprehensive directory management utilities for polymer
-simulation workflows. It handles initialization and organization of simulation
-directories, file discovery, and data management for different simulation types
-including molecular dynamics (MD), DFT calculations, and bio-oil modeling.
+This module provides the PolySimManage class, which is the central organiser
+for every iPHAsimulator workflow. All other modules receive a PolySimManage
+instance so they know where to read and write files.
 
-Main Classes:
-    PolySimManage: Core directory manager for polymer simulations
-    PolyDataDirs: Extended manager for polymer-specific data and CSV operations
-    BioOilDirs: Extended manager for bio-oil specific directories
-    ComplexModelDirs: Manager for complex fluid modeling directories
-    DFTManager: Manager for DFT quantum chemistry workflows
+The manager creates and tracks a structured folder layout:
 
-Example:
-    Basic usage for polymer simulation setup::
+    <your_project_dir>/
+    ├── pdb_files/
+    │   ├── molecules/   <- 3D PDB structure files for individual molecules
+    │   ├── systems/     <- assembled polymer systems for MD simulations
+    │   └── residue_codes.csv  <- database of molecule codes
+    └── python_scripts/      <- a convenient place for your own scripts
 
-        from modules.filepath_manager import PolySimManage
+Additional Manager Classes:
+    PolyDataDirs    - Extended manager with CSV data handling
+    BioOilDirs      - Manager for bio-oil / complex mixture workflows
+    ComplexModelDirs- Manager for complex fluid model data
+    DFTManager      - Manager for DFT quantum chemistry job directories
 
-        # Initialize directory manager
-        dirs = PolySimManage('/path/to/simulation/root')
+Example::
 
-        # Access various directories
-        print(dirs.pdb_file_dir)
-        print(dirs.molecules_dir)
+    from modules.filepath_manager import PolySimManage
 
-        # Discover available files
-        pdb_files = dirs.pdb_files_avail()
-        mol2_files = dirs.mol2_files_avail()
+    # Initialise the project — creates all subdirectories automatically
+    manager = PolySimManage('/path/to/my_pha_project')
+
+    # Discover available structure files
+    pdb_files = manager.pdb_files_avail()
+    mol2_files = manager.mol2_files_avail()
+
+    # Access key paths
+    print(manager.pdb_file_dir)    # .../my_pha_project/pdb_files/
+    print(manager.molecules_dir)   # .../my_pha_project/pdb_files/molecules/
 
 Note:
-    The main_dir must be a valid, existing path. Subdirectories are created
-    automatically if they don't exist.
+    All other iPHAsimulator classes (BuildAmberSystems, AmberSimulation, etc.)
+    should be initialised with a PolySimManage instance. This keeps all project
+    files in one organised location.
 """
 
 import os
@@ -1208,8 +1215,8 @@ class DFTManager(PolySimManage):
 
     max_jobs: int = DEFAULT_MAX_DFT_JOBS
     nprocs: int = DEFAULT_DFT_NPROCS
-    runorca_path: str = "/scratch/scw1976/dan/polymersimulator-main/bin/runorca.sh"
-    fukui_path: str = "/scratch/scw1976/dan/polymersimulator-main/bin/fukui.sh"
+    runorca_path: str = "/scratch/scw1976/dan/iPHAsimulator-main/bin/runorca.sh"
+    fukui_path: str = "/scratch/scw1976/dan/iPHAsimulator-main/bin/fukui.sh"
     running_path: str = "/scratch/s.983045"
     orbital_editor: str = "/scratch/s.983045/bio_oil_modelling/scripts/orbital_cube_editor.py"
     orca_resubmission_handler: str = "/scratch/s.983045/bio_oil_modelling/scripts/job_resubmitter.py"

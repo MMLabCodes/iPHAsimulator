@@ -1,9 +1,9 @@
-SatisPHAction Simulator Documentation
+iPHAsimulator Documentation
 =======================================
 
-Welcome to the **SatisPHAction Simulator** documentation!
+Welcome to the **iPHAsimulator** documentation!
 
-**SatisPHAction** (Satisfactory PHA - Polyhydroxyalkanoate - Action Simulator) is a comprehensive, open-source Python package for simulating polyhydroxyalkanoate (PHA) systems and polymers using molecular dynamics.
+**iPHAsimulator** (Satisfactory PHA - Polyhydroxyalkanoate - Action Simulator) is a comprehensive, open-source Python package for simulating polyhydroxyalkanoate (PHA) systems and polymers using molecular dynamics.
 
 This site guides you through everything you need to know about installing, using, and contributing to the project. Whether you’re just getting started or diving into advanced usage, you’ll find detailed explanations and examples here.
 
@@ -19,7 +19,7 @@ What you’ll find inside:
 - **Errors** – Common issues and how to resolve them.
 - **Usage** – Practical guides with examples.
 - **API Reference** – Auto-generated documentation of the Python API.
-- **Contributing** – How to help improve SatisPHAction Simulator.
+- **Contributing** – How to help improve iPHAsimulator.
 - **FAQ** – Answers to frequently asked questions.
 - **License** – Legal information and usage terms.
 

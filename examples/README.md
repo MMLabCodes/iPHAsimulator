@@ -1,6 +1,6 @@
-# SatisPHAction Simulator - Examples
+# iPHAsimulator - Examples
 
-This directory contains runnable examples demonstrating the key capabilities of **SatisPHAction Simulator**, a Python toolkit for simulating polyhydroxyalkanoate (PHA) systems using molecular dynamics.
+This directory contains runnable examples demonstrating the key capabilities of **iPHAsimulator**, a Python toolkit for simulating polyhydroxyalkanoate (PHA) systems using molecular dynamics.
 
 ## Quick Start Examples
 
@@ -73,12 +73,12 @@ Learn how to:
 
 ## Requirements
 
-All examples require the SatisPHAction Simulator environment:
+All examples require the iPHAsimulator environment:
 
 ```bash
 # Create and activate environment
-conda create --name satisfaction -c conda-forge
-conda activate satisfaction
+conda create --name iphAsimulator -c conda-forge
+conda activate iphAsimulator
 conda install -c conda-forge ambertools openmm rdkit openbabel
 ```
 

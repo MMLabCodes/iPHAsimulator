@@ -1,347 +1,570 @@
-# SatisPHAction Simulator
+# iPHAsimulator
 
-A professional, open-source Python package for simulating **polyhydroxyalkanoate (PHA)** systems and polymers using molecular dynamics.
+**iPHAsimulator** is an open-source Python toolkit for building polyhydroxyalkanoate (PHA) polymer structures and setting up quantum chemistry (DFT) or molecular dynamics (MD) simulations of PHAs.
 
-SatisPHAction stands for **Satisfactory PHA (Polyhydroxyalkanoate) Action Simulator** - a comprehensive toolkit that enables researchers to build molecular structures, parameterize them with the **Amber** force field, and run production-grade simulations using **OpenMM**.
-
-## What is SatisPHAction?
-
-PHAs are sustainable, biodegradable biopolymers with applications in packaging, biomedics, and industrial materials. SatisPHAction provides researchers with:
-
-- **Structure Building**: Generate polymer arrays and complex molecular systems
-- **Force Field Parameterization**: AMBER force field integration for accurate simulations
-- **Simulation Engine**: OpenMM-based molecular dynamics with equilibration and production workflows
-- **Analysis Tools**: Post-processing and trajectory analysis capabilities
-- **Community-Driven**: Fully open-source and welcoming to contributions
-
-The project has undergone significant refactoring to improve code clarity, maintainability, and accessibility. See [REFACTORING.md](REFACTORING.md) for details.
-
-For detailed documentation, visit: https://polymersimulator.readthedocs.io/en/latest/index.html
+> **No Python background required** — this guide explains everything from scratch, step by step.
 
 ---
 
-## Quick Start
+## What is iPHAsimulator?
 
-Get up and running with SatisPHAction in 5 minutes:
+**PHAs (Polyhydroxyalkanoates)** are biodegradable, bio-based polymers with wide applications in packaging, biomedicine, and materials science.
+
+**iPHAsimulator** lets you:
+- **Build PHA molecular structures** from simple chemical descriptions (SMILES strings) and generate ready-to-use 3D structure files (PDB format)
+- **Parameterise PHA molecules** with the AMBER force field (GAFF/GAFF2) — assigning the correct physics parameters needed for simulation
+- **Set up MD simulations** using OpenMM to simulate PHA polymer behaviour at the atomic level
+- **Set up DFT quantum chemistry jobs** using ORCA to calculate electronic properties of PHA monomers
+- **Analyse simulation results** — radius of gyration, glass transition temperature, diffusion coefficients, and more
+- Use **29 pre-built PHA monomer structures** out of the box
+
+The toolkit handles the entire workflow — from a chemical structure name or SMILES string all the way to production-ready simulation files.
+
+---
+
+## Table of Contents
+
+1. [What You Need Before Starting](#1-what-you-need-before-starting)
+2. [Installation](#2-installation)
+3. [Quick Start (5 minutes)](#3-quick-start-5-minutes)
+4. [What is a SMILES String?](#4-what-is-a-smiles-string)
+5. [Building PHA Structures](#5-building-pha-structures)
+6. [Setting Up Simulations](#6-setting-up-simulations)
+7. [Setting Up DFT Calculations](#7-setting-up-dft-calculations)
+8. [Analysing Results](#8-analysing-results)
+9. [Pre-built PHA Structures](#9-pre-built-pha-structures)
+10. [Windows Users](#10-windows-users)
+11. [Troubleshooting](#11-troubleshooting)
+12. [Contributing](#12-contributing)
+13. [Citation](#13-citation)
+
+---
+
+## 1. What You Need Before Starting
+
+iPHAsimulator relies on several scientific software packages. You will need:
+
+| Software | Purpose | Free? |
+|---|---|---|
+| **Miniconda** | Manages Python and scientific packages | Yes |
+| **AmberTools** (antechamber, tleap) | Force field parameterisation | Yes |
+| **OpenMM** | MD simulation engine | Yes |
+| **RDKit** | Molecular structure handling | Yes |
+| **Open Babel** | File format conversion | Yes |
+| **ORCA** *(optional)* | DFT quantum chemistry calculations | Free for academics |
+
+> **Windows users**: AmberTools runs on Linux/macOS. On Windows, you must first install **WSL (Windows Subsystem for Linux)**. See [Section 10](#10-windows-users) before continuing.
+
+---
+
+## 2. Installation
+
+### Step 1 — Install Miniconda
+
+Miniconda is a lightweight package manager that will install everything else for you.
+
+**On Linux or macOS**, open a terminal and run:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/MMLabCodes/polymersimulator.git
-cd polymersimulator
-
-# 2. Create and activate environment
-conda create --name satisfaction python=3.11
-conda activate satisfaction
-
-# 3. Install dependencies
-conda env update --file docs/environment.yml
-
-# 4. Verify installation
-python -c "import openmm; from rdkit import Chem; print('Success!')"
-```
-
----
-
-## Installation Instructions
-
-### 1. Setting up the environment and cloning repository
-
-(Important: If you are working in windows, please follow the steps in section section 3 <a name="section-3"></a> (Working with windows) to first set up a linux system in your computer before following the steps to set up the environment. If you are working in Unix (linux or macOS), you will not require any prerequisite steps before setting up the environment given below)
-
-To run this code, a Python environment containing **RDkit**, **AmberTools** and **openmm** is required. This environment is set up by running the lines described in the following steps 1-4 in your terminal (command line). (In windows, open ubuntu and enter these lines into the terminal)
-
-1. Install miniconda
-
-   Miniconda is a package and environment manager for Python. The following commands install miniconda in your home directory and intialise it for setting up environments.
-   
-```
-cd 
-mkdir -p ~/miniconda3 
-cd miniconda3/ 
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh 
+cd ~
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-~/miniconda3/bin/conda init bash 
+~/miniconda3/bin/conda init bash
 ~/miniconda3/bin/conda init zsh
 ```
-2. Create environment
 
-Creating an environment is useful as it creates a separate container for all packages required in the project. 
-The following commands create an environment called "AmberTools23" and activate it.
-   ```
-   conda create --name AmberTools23 
-   conda activate AmberTools23 
-   ```
-3. Install **openmm**, **RDkit** and **AmberTools**
+Then close and reopen your terminal so the changes take effect.
 
-   Now the environment has been activated the following commands install the 3 packages required.
-   
-   ```
-   conda install -c conda-forge ambertools=23
-   conda install -c conda-forge openmm
-   conda install -c conda-forge rdkit
-   conda install -c conda-forge openbabel
-   ```
-   
-3.1 Install **Jupyter notebooks**
+> On macOS (Apple Silicon / M1/M2/M3), replace `Linux-x86_64` with `MacOSX-arm64` in the wget URL above.
 
-   We need to install Jupyter notebooks in this environment to run AmberTools from a Python notebook (in addition to running it from the terminal)
-    
-   ```
-   sudo apt install python3-pip python3-dev
-   pip install jupyter
-   ```
-    
-3.2 Test the Jupyter notebook
+### Step 2 — Clone the Repository
 
-   In the terminal (or Ubuntu terminal if using a Windows machine), we need to enter the following:
-    
-   ```
-   jupyter notebook
-   ```
-   This will start a remote Jupyter notebook server within the environment we have just set up.
-    
-   You will see the following prompt after entering 'Jupyter notebook':
-
-<img width="510" alt="jupyter_tut" src="https://github.com/DanielYyork/polymer_simulator/assets/93723782/9718b875-aeb0-421b-a134-87e945d9b585">
-
-   Now, you can select the first URL (the one containing 'localhost:8888') and copy and paste it into a browser, this will launch Jupyter notebook (fingers crossed!)
-    
-   From there you can navigate to the Jupyter notebook folder and launch any additional notebooks from there.
-    
-   For now, we will close the notebook and ensure our other packages are working properly.
-    
-   To close the notebook, return to Ubuntu: hold "ctr" + "c" at the same time, you will be asked if you want to close Jupyter notebook - yes!
-    
-4. Ensure the required packages are available
-
-   Before running any code, it is recommended to check the availability of different packages.
-
-   **AmberTools** is a collection of different tools. Among them, **antechamber** and **tleap** are used extensively. To check these tools are available, enter the commands below into your terminal.
-   ```
-   antechamber
-   ```
-   If antechamber is available, you will see this in your terminal:
-   ```
-   Welcome to antechamber 22.0: molecular input file processor.
-   Usage: antechamber -i     input file name
-                   -fi    input file format
-                   -o     output file name
-                   -fo    output file format
-                   -c     charge method
-                   -cf    charge file name
-                   -nc    net molecular charge (int)
-                   -a     additional file name
-                   -fa    additional file format
-                   -ao    additional file operation
-                   ... more operations ..
-   ```
-
-   ```
-   tleap
-   ```
-   If tleap is available, you will see this in your terminal:
-   ```
-   Welcome to LEaP!
-   (no leaprc in search path)
-   >
-   ```
-   Note: The 'tleap' command opens an interactive version of the tool where you can enter tleap commands. To exit this press ctr+c.
-
-   Checking the availability of **openmm** is slightly different as it is a Python package - not a standalone program. Open the Python interpreter as follows:
-   ```
-   python3
-   ```
-   If python3 is available, you will see this in your terminal:
-   ```
-   Python 3.12.1 | packaged by conda-forge | (main, Dec 23 2023, 08:03:24) [GCC 12.3.0] on linux
-   Type "help", "copyright", "credits" or "license" for more information.
-   >>>
-   ```
-   Like 'tleap' the 'python3' command opens an interactive version of Python and Python code can be entered after '>>>'. To check openmm is imported enter the following into the Python interpreter:
-   ```
-   >>> from simtk.openmm import app
-   ```
-   You may see the following warning:
-   ```
-   Warning: importing 'simtk.openmm' is deprecated.  Import 'openmm' instead.
-   ```
-   This warning can be ignored, "import openmm" is better but importing from simtk will still load the openmm package.
-   Note: This is an interactive Python interpreter and pressing ctr+d will exit this - ctr+c acts as a keyboard interrupt in the python interpreter and will interrupt any running code but will not exit.
-
-   If openmm is not installed properly you will see this:
-   ```
-   >>> from simtk.openmm import app
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   ModuleNotFoundError: No module named 'simtk'
-   >>>
-   ```
-   In this case return to step 3 and try to install openmm again. An update to the openmm package may also be the issue; it can be updated with the following line:
-   ```
-   conda update -c conda-forge openmm
-   ```
-   Now, try an import openmm to the python interpreter again - it should work!
-
-5. Cloning the repository
-
-5.1 Normal git clone method
-    
-   At the top of the GitHub page there will a blue button labelled '<> code'. Click here and select 'HTTPS' and copy the link. No return to Ubuntu and enter:
-    
-   ```
-   git clone copied_link
-   ``` 
-   This will clone the repository into Ubuntu and you will be able to access all the required files.
-   Don't forget you can navigate through the file explorer to view these files (see section 4 for where linux files are located).
-    
-   If this method does not work, see the alternative method below.
-
-5.2 Alternative git clone method
-
-   To download these Python scripts and Jupyter notebooks it is necessary to clone the BCSW repository. **You will need a GitHub account**.
-   This will give you access to all the files in your own computer. The commands below should be executed in a terminal,
-   this will create a new directory in you home directory.
-    
-   First you will need to obtain a personal access token from GitHub, once you have logged into GitHub, 
-   click on your profile in the top right and navigate to (settings --> developer settings --> personal access tokens --> Tokens (classic)). 
-   Here, click on "generate new token --> generate new token (classic)" and enter a note "clone repo" and in the tick boxes, select "repo". 
-   Now scroll to the bottom and "generate token".
-   This will give you a token you will need for the next step.
-   ```
-   cd 
-   git clone https://USERNAME:YOUR_TOKEN@github.com/MMLabCodes/BCSW.git
-   cd polymer_simulator
-   ```
-   The final command navigates to the directory containing the notebooks and scripts required for the tutorial.
-
-## Tutorials & Documentation
-
-### Jupyter Notebooks
-
-A series of Jupyter notebooks provide step-by-step guides and examples for common tasks:
-
-- **Building molecular structures** - Learn to construct polymer chains and arrays
-- **Parameterization workflows** - Apply AMBER force fields to your systems
-- **Running simulations** - Set up and execute production MD simulations
-- **Analysis workflows** - Process and analyze simulation trajectories
-
-Launch Jupyter notebooks from your terminal:
+Download iPHAsimulator to your computer:
 
 ```bash
-jupyter notebook
+git clone https://github.com/MMLabCodes/iPHAsimulator.git
+cd iPHAsimulator
 ```
 
-Then open the first localhost URL in your browser and navigate to the tutorials folder.
+### Step 3 — Create a Conda Environment
 
-### Examples Directory
+A "conda environment" is an isolated container for all the software iPHAsimulator needs — it won't interfere with anything else on your computer.
 
-Pre-built examples for quick reference: `/examples/`
+```bash
+conda create --name iphAsimulator python=3.11
+conda activate iphAsimulator
+```
 
-### Documentation
+You will see `(iphAsimulator)` at the start of your terminal prompt — this means the environment is active.
 
-Complete documentation with API reference: [Documentation Site](https://polymersimulator.readthedocs.io/)
+> Every time you open a new terminal, you must run `conda activate iphAsimulator` before using iPHAsimulator.
+
+### Step 4 — Install Dependencies
+
+Install all required scientific packages through conda-forge (the community package repository):
+
+```bash
+conda install -c conda-forge ambertools=23 openmm rdkit openbabel mdanalysis numpy pandas scipy matplotlib seaborn scikit-learn
+```
+
+This may take several minutes — conda is downloading and configuring everything.
+
+### Step 5 — Install iPHAsimulator
+
+```bash
+pip install -e .
+```
+
+The `-e` flag installs in "editable" mode, so any changes you make to the code are immediately reflected.
+
+### Step 6 — Verify the Installation
+
+Run these checks to make sure everything is installed correctly:
+
+**Check AmberTools:**
+```bash
+antechamber
+```
+You should see a welcome message listing its options. If you get "command not found", AmberTools is not installed — return to Step 4.
+
+```bash
+tleap
+```
+You should see `Welcome to LEaP!`. Press `Ctrl+C` to exit tleap.
+
+**Check Python packages:**
+```bash
+python -c "import openmm; from rdkit import Chem; import MDAnalysis; print('All packages OK!')"
+```
+
+**Check Packmol** (used for building molecular systems):
+```bash
+which packmol
+```
+Packmol should be found if AmberTools is installed. Note the path — you will need it later to configure iPHAsimulator.
 
 ---
 
-## Windows Compatibility
+## 3. Quick Start (5 minutes)
 
-### Setting up Windows Subsystem for Linux (WSL) <a name="section-3"></a>
+Once everything is installed, try these examples to make sure iPHAsimulator works:
 
-The Amber package requires a Linux environment. On Windows, WSL (Windows Subsystem for Linux) provides the best solution:
+```bash
+# Navigate to the iPHAsimulator directory
+cd iPHAsimulator
 
-1. **Enable Windows Subsystem for Linux**
+# Activate the environment
+conda activate iphAsimulator
 
-   Open Windows PowerShell (as Administrator) and run:
-   ```
+# Run the examples
+python examples/01_hello_pdb.py
+python examples/02_smiles_to_structure.py
+python examples/03_molecular_properties.py
+```
+
+These examples demonstrate loading molecular structures and calculating basic properties. You do not need any simulation files — they work out of the box.
+
+---
+
+## 4. What is a SMILES String?
+
+A **SMILES** (Simplified Molecular-Input Line-Entry System) string is a text representation of a chemical structure. Instead of a 3D model, you write the molecule as a sequence of characters.
+
+Examples:
+
+| Molecule | SMILES |
+|---|---|
+| Ethanol | `CCO` |
+| 3-Hydroxybutyrate (3HB, the most common PHA monomer) | `CC(O)CC(=O)O` |
+| 4-Hydroxybutyrate (4HB) | `OCCCCC(=O)O` |
+
+SMILES strings are widely available in online chemical databases such as [PubChem](https://pubchem.ncbi.nlm.nih.gov/). For most PHAs you will work with in iPHAsimulator, SMILES strings are already built in or can be looked up in these databases.
+
+---
+
+## 5. Building PHA Structures
+
+### 5.1 Setting Up a Project Directory
+
+All iPHAsimulator workflows start by creating a **project manager** object that organises your files:
+
+```python
+from modules.filepath_manager import PolySimManage
+
+# Point to your working directory — iPHAsimulator will create the folder structure here
+manager = PolySimManage('/path/to/my_pha_project')
+```
+
+This creates the following folder structure automatically:
+
+```
+my_pha_project/
+├── pdb_files/
+│   ├── molecules/       ← 3D structure files for individual molecules
+│   ├── systems/         ← assembled polymer systems ready for simulation
+│   └── residue_codes.csv  ← a database keeping track of molecule codes
+└── python_scripts/      ← a place for your own scripts
+```
+
+### 5.2 Building a Single PHA Monomer from SMILES
+
+```python
+from modules.filepath_manager import PolySimManage
+from modules.system_builder import BuildAmberSystems
+
+# Initialise project manager
+manager = PolySimManage('/path/to/my_pha_project')
+
+# Create a system builder
+builder = BuildAmberSystems(manager)
+
+# Convert a SMILES string to a 3D PDB structure file
+# This generates the 3D coordinates using Open Babel and assigns a residue code
+smiles = 'CC(O)CC(=O)O'   # 3-Hydroxybutyrate (3HB) monomer
+name   = '3HB'
+
+pdb_path = builder.SmilesToPDB_GenResCode(smiles=smiles, name=name)
+print(f'PDB file created: {pdb_path}')
+```
+
+### 5.3 Parameterising a Molecule with AMBER Force Fields
+
+Before running an MD simulation, you must assign force field parameters — essentially, the physical rules that govern how atoms move and interact. iPHAsimulator automates this using AMBER's `antechamber` and `tleap` tools.
+
+```python
+from modules.filepath_manager import PolySimManage
+from modules.system_builder import BuildAmberSystems
+from modules.config import create_config_file
+
+# First, tell iPHAsimulator where Packmol is installed (one-time setup)
+# You can find the path by running: which packmol
+create_config_file(packmol_path='/path/to/packmol')
+
+# Initialise
+manager = PolySimManage('/path/to/my_pha_project')
+builder = BuildAmberSystems(manager)
+
+# Parameterise the molecule (runs antechamber + tleap automatically)
+# This creates .mol2, .frcmod, .prmtop, and .inpcrd files
+builder.parameterize_mol(name='3HB', charge=0)
+print('Parameterisation complete — AMBER force field files generated.')
+```
+
+> **What are .prmtop and .inpcrd files?** These are the two main input files OpenMM needs to run a simulation: `.prmtop` stores the force field topology (bonds, angles, charges), and `.inpcrd` stores the starting atomic coordinates.
+
+### 5.4 Building a Polymer (Homopolymer)
+
+PHAs are polymers — long chains of repeating monomer units. iPHAsimulator can build realistic polymer chains with head, main-chain, and tail residues:
+
+```python
+# Build a 3HB decamer (10-unit polymer chain) and a 3x3 array of chains
+builder.gen_3_3_array(
+    name='3HB',
+    n_units=10,         # number of monomer repeat units per chain
+    n_chains_x=3,       # chains in x direction (3x3 = 9 chains total)
+    n_chains_y=3
+)
+print('Polymer array system created — ready for MD simulation.')
+```
+
+---
+
+## 6. Setting Up Simulations
+
+### 6.1 Running an MD Simulation
+
+Once you have `.prmtop` and `.inpcrd` files from the parameterisation step, you can run molecular dynamics:
+
+```python
+from modules.filepath_manager import PolySimManage
+from modules.simulation_engine import AmberSimulation
+
+manager = PolySimManage('/path/to/my_pha_project')
+
+# Load the parameterised system
+sim = AmberSimulation(
+    manager=manager,
+    topology_file='/path/to/3HB.prmtop',
+    coordinates_file='/path/to/3HB.inpcrd'
+)
+
+# Step 1: Energy minimisation — removes any strained geometry
+sim.minimize_energy()
+print('Energy minimisation done.')
+
+# Step 2: NVT equilibration — heat the system to 298 K at constant volume
+sim.basic_NVT(total_steps=500_000, temp=298.15)
+print('NVT equilibration done.')
+
+# Step 3: NPT equilibration — equilibrate pressure at 1 bar
+sim.basic_NPT(total_steps=1_000_000, temp=298.15, pressure=1.0)
+print('NPT equilibration done.')
+```
+
+> **Key MD concepts**:
+> - **Energy minimisation**: removes clashes and bad geometry before starting dynamics
+> - **NVT**: constant Number of particles, Volume, Temperature — good for heating
+> - **NPT**: constant Number of particles, Pressure, Temperature — best for production runs
+
+### 6.2 Simulating a Thermal Ramp (for Tg/Tm)
+
+To determine the glass transition temperature (Tg) or melting temperature (Tm) of a PHA polymer:
+
+```python
+# Heat from 300 K to 700 K, then cool back to 300 K
+sim.thermal_ramp(
+    start_temp=300.0,
+    end_temp=700.0,
+    steps_per_ramp=2_000_000
+)
+```
+
+### 6.3 Quick Standalone MD Run
+
+For a minimal, standalone simulation without the project manager (uses the command line):
+
+```bash
+# Run from the terminal — provide your AMBER files
+python python_scripts/simple_md_run.py my_system.prmtop my_system.inpcrd
+```
+
+This runs energy minimisation followed by 10,000 NVT steps and saves a PDB trajectory and energy CSV.
+
+---
+
+## 7. Setting Up DFT Calculations
+
+DFT (Density Functional Theory) quantum chemistry calculations require **ORCA** (a separate program, free for academics). iPHAsimulator generates ORCA input files for you.
+
+### 7.1 Generating an ORCA Input File
+
+```python
+from modules.system_builder import BuildAmberSystems
+from modules.filepath_manager import PolySimManage, DFTManager
+from modules.input_generator import DFTInputGenerator
+
+manager = PolySimManage('/path/to/my_pha_project')
+builder = BuildAmberSystems(manager)
+
+# Step 1: Convert your PDB to XYZ format (required by ORCA)
+builder.PDBToXYZ(name='3HB')
+
+# Step 2: Configure DFT settings
+DFTInputGenerator.set_functional('B3LYP')      # Exchange-correlation functional
+DFTInputGenerator.set_basis_set('def2-TZVP')   # Basis set
+DFTInputGenerator.set_nprocs(8)                # Number of CPU cores
+
+# Step 3: Generate the ORCA .inp file
+xyz_path   = '/path/to/3HB.xyz'
+inp_path   = '/path/to/3HB.inp'
+DFTInputGenerator.generate_input(
+    xyz_filepath=xyz_path,
+    input_filepath=inp_path,
+    filename='3HB'
+)
+print('ORCA input file created — submit to your HPC cluster or run locally.')
+```
+
+### 7.2 Processing DFT Results
+
+After ORCA finishes, iPHAsimulator can read back the results:
+
+```python
+from modules.quantum_calculator import csv_to_orca_molecules
+
+# Load ORCA results from a CSV summary file
+molecules = csv_to_orca_molecules('/path/to/orca_results.csv')
+
+for mol in molecules:
+    print(f'{mol.name}: HOMO-LUMO gap = {mol.homo_lumo_gap:.2f} eV, '
+          f'Dipole = {mol.dipole_moment:.2f} Debye')
+```
+
+### 7.3 Calculating Partial Charges
+
+Accurate atomic partial charges are essential for force field parameterisation. iPHAsimulator supports multiple methods:
+
+```python
+from modules.charge_calculator import ChargeCalculator
+
+calc = ChargeCalculator(
+    manager=manager,
+    molecule_name='3HB',
+    smiles='CC(O)CC(=O)O'
+)
+
+# Calculate charges using all supported force field methods (GAFF, GAFF2 with BCC)
+calc.calculate_all_semi_charge()
+
+# Optionally use the NAGL machine-learning charge model
+calc.calculate_nagl_charge()
+
+# Save and plot results for comparison
+calc.save_charges_to_csv()
+calc.plot_charges()
+```
+
+---
+
+## 8. Analysing Results
+
+### 8.1 Loading a Simulation Trajectory
+
+```python
+from modules.filepath_manager import PolySimManage
+from modules.trajectory_analyzer import poly_Universe, Analysis
+
+manager = PolySimManage('/path/to/my_pha_project')
+
+# Load the simulation
+universe = poly_Universe(
+    manager=manager,
+    system_name='3HB_3x3_array',
+    base_molecule='3HB',
+    sim_dir='/path/to/simulation/output'
+)
+
+analysis = Analysis(universe)
+```
+
+### 8.2 Common Analyses
+
+```python
+# Radius of gyration — how compact the polymer is
+rog = analysis.plot_ROG(plot=True)
+
+# End-to-end distance distribution
+analysis.plot_end_to_end(plot=True)
+
+# Glass transition temperature (Tg) from a thermal ramp trajectory
+tg = analysis.get_tg()
+print(f'Estimated Tg: {tg:.1f} K')
+
+# Mean squared displacement and self-diffusion coefficient
+msd = analysis.plot_MSD(plot=True)
+```
+
+---
+
+## 9. Pre-built PHA Structures
+
+iPHAsimulator ships with 29 ready-to-use PHA monomer trimer structures in the `pdb_files/molecules/` directory.
+
+| Category | Monomers Available |
+|---|---|
+| **Short-chain-length (SCL) PHAs** | 3HB, 4HB, 3HV, 2HB, 2HP |
+| **Medium-chain-length (MCL) PHAs** | 3HD, 3HHx, 3HHp, 3HO, 3HDD, 6HHx, 7HHp |
+| **Aromatic side-chain PHAs** | 3H3PhP, 3H4PhB, 3H5PhV, 3H6PhHx, 3H7PhHp, 3H8PhO, and phenoxy/fluorophenoxy variants |
+
+Naming convention: `3HB` = **3**-**H**ydroxy**B**utyrate, `3HV` = 3-HydroxyValerate, etc.
+
+Each monomer folder (`pdb_files/molecules/<name>_trimer/`) contains the parameterised head-mainchain-tail trimer that iPHAsimulator uses to build polymer chains.
+
+---
+
+## 10. Windows Users
+
+AmberTools requires a Linux environment. On Windows, use **WSL (Windows Subsystem for Linux)** to get a Linux terminal inside Windows.
+
+### Setting Up WSL
+
+1. **Enable WSL** — Open PowerShell as Administrator and run:
+   ```powershell
    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
    ```
 
-2. **Install Ubuntu from Microsoft Store**
+2. **Install Ubuntu** — Visit the [Microsoft Store](https://apps.microsoft.com/search?query=ubuntu) and install Ubuntu.
 
-   Visit: https://apps.microsoft.com/search?query=ubuntu
-
-3. **Launch Ubuntu and set up**
-
-   ```
-   sudo apt update
-   sudo apt upgrade
+3. **Launch Ubuntu** and update it:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
    ```
 
-4. **Follow the Linux Installation Steps**
+4. **Follow the normal installation steps** (Section 2) inside your Ubuntu terminal.
 
-   Once Ubuntu is running, follow the standard installation instructions above.
+> Your Windows files are accessible inside Ubuntu at `/mnt/c/` (for the C: drive). You can work with files in both environments.
 
 ---
 
-## Contributing
+## 11. Troubleshooting
 
-We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help makes SatisPHAction better for everyone.
+### "command not found: antechamber" or "command not found: tleap"
+AmberTools is not installed or the conda environment is not active. Make sure you run `conda activate iphAsimulator` and that AmberTools was installed in Step 4.
 
-**Get started:**
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to your branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### "ModuleNotFoundError: No module named 'openmm'"
+OpenMM is not installed. Run:
+```bash
+conda install -c conda-forge openmm
+```
 
-For detailed contribution guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+### "ModuleNotFoundError: No module named 'rdkit'"
+RDKit is not installed. Run:
+```bash
+conda install -c conda-forge rdkit
+```
+
+### Packmol path errors during system building
+You need to tell iPHAsimulator where Packmol is. Find it with:
+```bash
+which packmol
+```
+Then set it:
+```python
+from modules.config import create_config_file
+create_config_file(packmol_path='/path/shown/by/which/packmol')
+```
+
+### ORCA not found
+ORCA is not part of conda and must be downloaded separately from the [ORCA forum](https://orcaforum.kofo.mpg.de/). Set its path:
+```bash
+export ORCA_PATH=/path/to/orca
+```
 
 ---
 
-## Citation
+## 12. Contributing
 
-If you use SatisPHAction in your research, please cite:
+Contributions are welcome! Whether you are fixing a bug, adding a new PHA monomer, or improving documentation — all contributions make iPHAsimulator better.
+
+**How to contribute:**
+1. Fork the repository on GitHub
+2. Create a branch: `git checkout -b feature/my-improvement`
+3. Make your changes and test them: `python examples/01_hello_pdb.py`
+4. Commit: `git commit -m 'Add my improvement'`
+5. Push and open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
+
+---
+
+## 13. Citation
+
+If you use iPHAsimulator in your research, please cite:
 
 ```bibtex
-@software{York2024SatisPHAction,
-  author = {York, Daniel J. and Vidal-Daza, Isaac and Martin-Martinez, Francisco},
-  title = {SatisPHAction Simulator: A Python Package for PHA Molecular Dynamics Simulations},
-  year = {2024},
-  url = {https://github.com/MMLabCodes/polymersimulator}
+@software{York2024iPHAsimulator,
+  author    = {York, Daniel J. and Vidal-Daza, Isaac and Martin-Martinez, Francisco},
+  title     = {iPHAsimulator: A Python Toolkit for Building PHA Structures and Setting Up DFT and MD Simulations},
+  year      = {2024},
+  url       = {https://github.com/MMLabCodes/iPHAsimulator},
+  note      = {Open-source toolkit for polyhydroxyalkanoate molecular simulations}
 }
 ```
 
 ---
 
-## Authors
+## Acknowledgements
 
-SatisPHAction Simulator is developed and maintained by:
+iPHAsimulator was developed at the **MMlab (Molecular Modelling Lab)** and uses these outstanding open-source tools:
 
-- **Daniel J. York** (Lead Developer)
-- **Dr. Isaac Vidal-Daza** (Core Architecture)
-- **Dr. Francisco Martin-Martinez** (Principal Investigator)
-
-With testing and feedback from:
-- Sinem Bektas
-- Daniel Clarke
-
-All contributors are members of the [Martin-Martinez Lab](https://www.martinmartinezlab.com/).
+- [OpenMM](https://openmm.org/) — MD simulation engine
+- [AmberTools](https://ambermd.org/AmberTools.php) — Force field parameterisation (antechamber, tleap)
+- [RDKit](https://www.rdkit.org/) — Cheminformatics
+- [Open Babel](http://openbabel.org/) — Chemical file format conversion
+- [MDAnalysis](https://www.mdanalysis.org/) — Trajectory analysis
+- [ORCA](https://orcaforum.kofo.mpg.de/) — Quantum chemistry calculations (optional)
 
 ---
 
-## License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
----
-
-## Acknowledgments
-
-- AmberTools and OpenMM teams for excellent MD simulation tools
-- RDKit team for molecular informatics capabilities
-- The open-source scientific computing community
-
----
-
-## Support
-
-For questions, issues, or suggestions:
-- Open an [Issue](https://github.com/MMLabCodes/polymersimulator/issues)
-- Check the [Documentation](https://polymersimulator.readthedocs.io/)
-- Review [REFACTORING.md](REFACTORING.md) for recent improvements
-
----
-
-**Project**: SatisPHAction Simulator
-**Repository**: https://github.com/MMLabCodes/polymersimulator
-**Status**: Active Development
+*iPHAsimulator — Making PHA molecular simulation accessible to everyone.*

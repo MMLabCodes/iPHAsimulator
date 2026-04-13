@@ -1,31 +1,38 @@
 """
-DFT input file generation for quantum chemistry calculations.
+iPHAsimulator - DFT Input File Generator.
 
-This module provides utilities for generating ORCA DFT input files
-with configurable computational parameters. It handles the generation
-of input files from XYZ coordinate files with customizable basis sets,
-functionals, and computational options.
+This module generates ORCA input files for DFT (Density Functional Theory)
+quantum chemistry calculations. ORCA is a free quantum chemistry program
+(free for academic use) used to compute electronic properties of molecules.
 
-Example:
-    Generate a DFT input file::
+The DFTInputGenerator class works entirely through class methods — you do not
+need to create an instance of the class.
 
-        from modules.input_generator import DFTInputGenerator
+Typical workflow:
+    1. Convert your PDB file to XYZ format using BuildAmberSystems.PDBToXYZ()
+    2. Configure DFT settings (functional, basis set, CPU cores)
+    3. Call generate_input() to write the ORCA .inp file
+    4. Submit the .inp file to ORCA (locally or on an HPC cluster)
 
-        # Configure parameters
-        DFTInputGenerator.set_functional("B3LYP")
-        DFTInputGenerator.set_basis_set("def2-TZVP")
-        DFTInputGenerator.set_nprocs(10)
+Example::
 
-        # Generate input file
-        input_text = DFTInputGenerator.generate_input(
-            xyz_filepath='/path/to/molecule.xyz',
-            input_filepath='/path/to/molecule.inp',
-            filename='molecule'
-        )
+    from modules.input_generator import DFTInputGenerator
+
+    # Configure DFT parameters
+    DFTInputGenerator.set_functional('B3LYP')     # default is B3LYP
+    DFTInputGenerator.set_basis_set('def2-TZVP')  # default is def2-tzvp
+    DFTInputGenerator.set_nprocs(8)               # number of CPU cores
+
+    # Generate the ORCA input file
+    DFTInputGenerator.generate_input(
+        xyz_filepath='/path/to/molecule.xyz',
+        input_filepath='/path/to/molecule.inp',
+        filename='my_molecule'
+    )
 
 Note:
-    This module requires that XYZ coordinate files include HOMO/LUMO
-    information which is extracted using get_homo_lumo_from_xyz().
+    XYZ files must include HOMO/LUMO orbital index information, which is
+    extracted automatically by the module.
 """
 
 from typing import Tuple, Optional

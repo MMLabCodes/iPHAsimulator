@@ -1,7 +1,7 @@
 Building and Simulating Monodisperse PHAs: Example scripts
 ==========================================================
 
-This notebook contains the same code detailed here: https://polymersimulator.readthedocs.io/en/latest/simulating_phas.html . If you are not familiar with this code, it is advised that you work through the linked documentation.
+This notebook contains the same code detailed here: https://iPHAsimulator.readthedocs.io/en/latest/simulating_phas.html . If you are not familiar with this code, it is advised that you work through the linked documentation.
 
 In this section of the documentation, the explanations have been stripped back and instead provides examples of how this code can be built up to be used as an entire python script - with the end goal of being able to reproduce similar systems with different polymers.
 
@@ -16,7 +16,7 @@ A series of different things are covered here:
 - Script to run simulations
 - Script to carry out all of these tasks in one
 
-If you are unsure how to launch jupyter notebook, refer here: https://polymersimulator.readthedocs.io/en/latest/installation.html#launching-jupyter-notebook
+If you are unsure how to launch jupyter notebook, refer here: https://iPHAsimulator.readthedocs.io/en/latest/installation.html#launching-jupyter-notebook
 
 .. note::
    PHA examples provided here are intended as a starting point and parameters are provided. You can adapt the workflow to other polymer systems using the more detailed instructions later on in the documentation.
@@ -240,7 +240,7 @@ As an example, decamers will be built for:
        # Build the polymer using the trimer_base_name and number_of_units
        polymer = builder.gen_polymer_pdb_and_params(base_name=trimer_base_name, number_of_units=number_of_units)
 
-This will build 3 different decamers for the given prefixes. If you are unsure of how to call the parameters and pdb files for the generated polymers, this is explained here: https://polymersimulator.readthedocs.io/en/latest/simulating_phas.html#loading-polymer-files
+This will build 3 different decamers for the given prefixes. If you are unsure of how to call the parameters and pdb files for the generated polymers, this is explained here: https://iPHAsimulator.readthedocs.io/en/latest/simulating_phas.html#loading-polymer-files
 
 .. note::
    This example is limited to buuilding decamers. However, by using i notation in a for loop, a second list of differeing polymer lengths can be defined allowing for packing different lengths of the same type of polymer. An example of this will be shown in the final script of this guide.
@@ -262,7 +262,7 @@ This example will build the same system as seen in the walkthrough - **25 3HB de
 - Name of the polymer
 - Amount of the polymer 
 
-If you are unsure how the polymer is named, please refer here: https://polymersimulator.readthedocs.io/en/latest/simulating_phas.html#polymer-naming-conventions
+If you are unsure how the polymer is named, please refer here: https://iPHAsimulator.readthedocs.io/en/latest/simulating_phas.html#polymer-naming-conventions
 
 .. code-block:: python
 
@@ -328,7 +328,7 @@ The simulation protocol is the same as shown in the walkthrough notebook:
 A **while loop** is also implemented here to avoid any NaN errors that sometimes result after energy minimization - something that is explained in more detail in the walkthough notebook.
 
 .. note::
-   For more information on each simulation step and how the class for running simulations works, please refer here: https://polymersimulator.readthedocs.io/en/latest/simulating_phas.html#running-simulations
+   For more information on each simulation step and how the class for running simulations works, please refer here: https://iPHAsimulator.readthedocs.io/en/latest/simulating_phas.html#running-simulations
 
 .. code-block:: python
 

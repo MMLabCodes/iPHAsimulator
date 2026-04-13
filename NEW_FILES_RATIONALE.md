@@ -84,7 +84,7 @@ Standard Python installation script that enables the package to be installed via
 
 ### What It Specifies
 ```
-Package name:           satisfaction-simulator
+Package name:           iPHAsimulator
 Version:                1.1.0
 Python requirement:     3.8+
 Required dependencies:  numpy, pandas, scipy, matplotlib, etc.
@@ -97,8 +97,8 @@ Project metadata:       author, license, URLs, description
 **Before**:
 ```bash
 # Users had to do this (clunky)
-cd /path/to/polymersimulator
-export PYTHONPATH="${PYTHONPATH}:/path/to/polymersimulator"
+cd /path/to/iPHAsimulator
+export PYTHONPATH="${PYTHONPATH}:/path/to/iPHAsimulator"
 python script.py
 ```
 
@@ -213,7 +213,7 @@ REFACTORING.md         # Refactoring history
 
 **Scenario 1: PyPI Installation** (Future)
 ```bash
-pip install satisfaction-simulator  # Downloads from PyPI
+pip install iPHAsimulator  # Downloads from PyPI
 # MANIFEST.in ensures all files are included
 ```
 
@@ -442,7 +442,7 @@ python -m build
 # 3. User installs from PyPI
 #    → Uses setup.py+pyproject.toml config
 #    → Uses modules/config.py to set paths
-pip install satisfaction-simulator
+pip install iPHAsimulator
 ```
 
 ---

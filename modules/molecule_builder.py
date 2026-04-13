@@ -1,22 +1,34 @@
 """
-Molecular structure manipulation and analysis utilities.
+iPHAsimulator - Molecular Structure Utilities.
 
 This module provides functions for working with molecular structures,
-including volume calculations, SMILES/PDB conversions, and molecular
-property analysis. It leverages RDKit for chemistry informatics operations.
+including volume calculations, SMILES-to-PDB conversions, and molecular
+property analysis. It uses RDKit for chemistry operations.
 
-Example:
-    Basic usage for molecular operations::
+A SMILES string is a compact text representation of a molecule.
+For example, '3HB' (3-hydroxybutyrate) is 'CC(O)CC(=O)O'.
 
-        from modules.molecule_builder import vol_from_smiles, has_heteroatoms
+Key Functions:
+    vol_from_smiles(smiles)     - Estimate molecular volume from a SMILES string
+    vol_from_pdb(pdb_path)      - Estimate molecular volume from a PDB file
+    smiles_to_pdb(smiles, out)  - Convert SMILES string to a 3D PDB file
+    has_heteroatoms(mol)        - Check if a molecule contains N, O, or S atoms
+    has_rings(mol)              - Check if a molecule contains ring structures
+    count_elements_in_pdb(path) - Count atoms by element in a PDB file
+    calculate_molecular_weight(pdb) - Calculate molecular weight from a PDB
 
-        # Calculate volume from SMILES string
-        smiles = "CC(C)CC1=CC=C(C=C1)C(C)C"
-        volume = vol_from_smiles(smiles)
+Example::
 
-        # Check for heteroatoms
-        mol = Chem.MolFromSmiles(smiles)
-        heteroatoms = has_heteroatoms(mol)
+    from modules.molecule_builder import vol_from_smiles, has_heteroatoms
+    from rdkit import Chem
+
+    # 3-Hydroxybutyrate (3HB) - the most common PHA monomer
+    smiles = 'CC(O)CC(=O)O'
+    volume = vol_from_smiles(smiles)
+    print(f'Volume: {volume:.1f} Angstrom^3')
+
+    mol = Chem.MolFromSmiles(smiles)
+    print(f'Has heteroatoms: {has_heteroatoms(mol)}')
 """
 
 from rdkit import Chem

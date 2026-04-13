@@ -1,6 +1,6 @@
-# Contributing to SatisPHAction Simulator
+# Contributing to iPHAsimulator
 
-Thank you for considering contributing to the SatisPHAction Simulator! We welcome contributions from everyone, whether you're fixing bugs, adding features, improving documentation, or suggesting improvements.
+Thank you for considering contributing to iPHAsimulator! We welcome contributions from everyone, whether you're fixing bugs, adding features, improving documentation, or suggesting improvements.
 
 ## Code of Conduct
 
@@ -13,17 +13,17 @@ We are committed to providing a welcoming and inclusive environment for all cont
 ```bash
 # Fork the repository on GitHub
 # Then clone your fork locally
-git clone https://github.com/YOUR_USERNAME/polymersimulator.git
-cd polymersimulator
-git remote add upstream https://github.com/MMLabCodes/polymersimulator.git
+git clone https://github.com/YOUR_USERNAME/iPHAsimulator.git
+cd iPHAsimulator
+git remote add upstream https://github.com/MMLabCodes/iPHAsimulator.git
 ```
 
 ### 2. Set Up Development Environment
 
 ```bash
 # Create a development environment
-conda create --name satisfaction-dev python=3.11
-conda activate satisfaction-dev
+conda create --name iphAsimulator-dev python=3.11
+conda activate iphAsimulator-dev
 
 # Install dependencies
 conda install -c conda-forge ambertools openmm rdkit openbabel
@@ -303,7 +303,7 @@ How this was tested:
 - **Documentation**: Check [ARCHITECTURE.md](ARCHITECTURE.md) for system design
 - **Setup Issues**: See [README.md](README.md) installation section
 - **Module Help**: Check docstrings: `python -c "import modules.X; help(modules.X)"`
-- **GitHub Issues**: Open an [issue](https://github.com/MMLabCodes/polymersimulator/issues)
+- **GitHub Issues**: Open an [issue](https://github.com/MMLabCodes/iPHAsimulator/issues)
 
 ## Recognition
 
@@ -312,7 +312,7 @@ All contributors are recognized in:
 - GitHub contributors page
 - Project CHANGELOG.md (for significant contributions)
 
-Thank you for contributing to SatisPHAction Simulator! 🧬
+Thank you for contributing to iPHAsimulator! 🧬
 
 ---
 

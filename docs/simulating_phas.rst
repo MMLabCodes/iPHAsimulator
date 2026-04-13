@@ -2,14 +2,14 @@ Building and Simulating Monodisperse PHAs: walkthrough
 ======================================================
 
 .. important::
-   All notebooks and code should be run from the home directory: **~/polymersimulator**.  
+   All notebooks and code should be run from the home directory: **~/iPHAsimulator**.  
    Running code from other directories may cause issues with file paths and prevent required Python modules from being loaded.
 
 This guide will cover how to build polymers and run simulations of **polyhydroxyalkanoates (PHAs)** using pre-generated parameters.
 
 The associated notebook can be found in the main PolymerSimulator directory and is called **Simulating_Monodisperse_PHAs_Walkthrough.ipynb**.
 
-If you are unsure how to launch jupyter notebook, refer here: https://polymersimulator.readthedocs.io/en/latest/installation.html#launching-jupyter-notebook
+If you are unsure how to launch jupyter notebook, refer here: https://iPHAsimulator.readthedocs.io/en/latest/installation.html#launching-jupyter-notebook
 
 .. note::
    PHA examples provided here are intended as a starting point and parameters are provided. You can adapt the workflow to other polymer systems using the more detailed instructions later on in the documentation.
@@ -200,7 +200,7 @@ The parameterization process at a glance:
 4. Save these units in files so polymers can be built 
 
 .. note::
-   Parameterizing polymers with the polymersimulator is explained in more detail in other parts of this documentation. Please refer to it for projects where the parameters for different polymers do not already exist.
+   Parameterizing polymers with the iPHAsimulator is explained in more detail in other parts of this documentation. Please refer to it for projects where the parameters for different polymers do not already exist.
 
 To build a polymer, two things are required:
 
@@ -259,9 +259,9 @@ For the example of 3HB, the final polymer can be visualized in VMD from the PDB 
 
 .. note::
    These new files for the contstructed polymer will be in their own folder:  
-   **~polymersimulator/pdb_files/systems/3HB_10_polymer**  
+   **~iPHAsimulator/pdb_files/systems/3HB_10_polymer**  
 
-   The files for building the polymer units can be found at: **~polymersimulator/pdb_files/molecules/3HB_trimer**
+   The files for building the polymer units can be found at: **~iPHAsimulator/pdb_files/molecules/3HB_trimer**
 
 5.1: Polymer Naming Conventions
 -------------------------------
@@ -493,13 +493,13 @@ The manager object handles the creation of a simulation directory and saving the
 
 ```python
 
- sim_dir = f"~polymersimulator/pdb_files/systems/{system_name}/{date_and_timestamp}"   
+ sim_dir = f"~iPHAsimulator/pdb_files/systems/{system_name}/{date_and_timestamp}"   
 
 An an example for the simulation that is being carried in this guide will look like this:
 
 ```python
 
-   sim_dir = "~polymersimulator/pdb_files/systems/3HB_10_polymer_25_amorph/2025-01-01_0000"
+   sim_dir = "~iPHAsimulator/pdb_files/systems/3HB_10_polymer_25_amorph/2025-01-01_0000"
 
 .. note::
    Each simulation is given a unique timestamp so that multiple instances of the same simulation can be ran without the files ever overwriting eachother.

@@ -1,5 +1,5 @@
 """
-Legacy and deprecated functions from SatisPHAction Simulator.
+Legacy and deprecated functions from iPHAsimulator.
 
 This module contains functions that are no longer actively maintained and support
 is not continued for these functions. They are preserved for backward compatibility

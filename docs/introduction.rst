@@ -1,9 +1,9 @@
 Introduction
 ============
 
-Welcome to the **SatisPHAction Simulator** documentation!
+Welcome to the **iPHAsimulator** documentation!
 
-SatisPHAction (Satisfactory PHA - Polyhydroxyalkanoate - Action Simulator) is a professional, open-source Python package that provides a comprehensive framework for building, parameterizing, and simulating polyhydroxyalkanoate (PHA) systems and polymers using molecular dynamics (MD).
+iPHAsimulator (Satisfactory PHA - Polyhydroxyalkanoate - Action Simulator) is a professional, open-source Python package that provides a comprehensive framework for building, parameterizing, and simulating polyhydroxyalkanoate (PHA) systems and polymers using molecular dynamics (MD).
 
 Key Features
 ------------
@@ -32,12 +32,12 @@ Quick Start
 
 To get started quickly:
 
-1. Clone the repository: ``git clone https://github.com/MMLabCodes/polymersimulator.git``
-2. Create a conda environment: ``conda create --name satisfaction python=3.11``
+1. Clone the repository: ``git clone https://github.com/MMLabCodes/iPHAsimulator.git``
+2. Create a conda environment: ``conda create --name iphAsimulator python=3.11``
 3. Activate and install: ``conda env update --file docs/environment.yml``
-4. Begin using SatisPHAction Simulator!
+4. Begin using iPHAsimulator!
 
-If you are new to SatisPHAction Simulator, start with the :doc:`installation` guide.
+If you are new to iPHAsimulator, start with the :doc:`installation` guide.
 
 About Polyhydroxyalkanoates (PHAs)
 ----------------------------------
@@ -48,12 +48,12 @@ PHAs are sustainable, biodegradable thermoplastic biopolymers produced by variou
 - **Biomedical devices** – Drug delivery systems, scaffolds for tissue engineering
 - **Industrial applications** – Coatings, adhesives, fibers, and composites
 
-SatisPHAction Simulator enables researchers to explore PHA properties at the molecular level through computational simulations, supporting the development of next-generation sustainable materials.
+iPHAsimulator enables researchers to explore PHA properties at the molecular level through computational simulations, supporting the development of next-generation sustainable materials.
 
 Authors
 -------
 
-The SatisPHAction Simulator was developed and maintained by:
+The iPHAsimulator was developed and maintained by:
 
 - **Daniel J. York**
 - **Dr. Isaac Vidal-Daza**

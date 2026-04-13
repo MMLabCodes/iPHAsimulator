@@ -1,6 +1,6 @@
-# SatisPHAction Simulator - Project Requirements
+# iPHAsimulator - Project Requirements
 #
-# Core dependencies for running SatisPHAction Simulator and generating documentation.
+# Core dependencies for running iPHAsimulator and generating documentation.
 # Install with: pip install -r requirements.txt
 
 # === Documentation Generation ===
@@ -32,10 +32,10 @@ MDAnalysis                      # Trajectory analysis for MD simulations
 # Recommended installation procedure:
 #
 # 1. Create conda environment:
-#    conda create --name satisfaction python=3.11
+#    conda create --name iphAsimulator python=3.11
 #
 # 2. Activate environment:
-#    conda activate satisfaction
+#    conda activate iphAsimulator
 #
 # 3. Install conda-forge packages first (for better compatibility):
 #    conda install -c conda-forge ambertools openmm rdkit openbabel

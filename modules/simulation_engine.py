@@ -1,36 +1,49 @@
 # -*- coding: utf-8 -*-
 """
-Simulation Engine Module - MD Simulation Wrappers and Analysis.
+iPHAsimulator - MD Simulation Engine.
 
-This module provides OpenMM-based simulation engine wrappers for running molecular dynamics
-simulations with various forcefields (AMBER, ANI, Gromacs). It includes:
+This module provides OpenMM-based wrappers for running molecular dynamics
+simulations of PHA polymer systems. It handles the full simulation lifecycle:
+energy minimisation, equilibration (NVT/NPT), production runs, simulated
+annealing, and thermal ramps.
 
-- TopologyML and PositionsML classes for custom topology handling
-- BuildSimulation: Core simulation engine with energy minimization and ensemble methods
-- AmberSimulation: AMBER forcefield-specific simulation wrapper
-- ANISimulation: Machine learning forcefield (ANI) simulation wrapper
-- GromacsSimulation: Gromacs-compatible simulation wrapper
-- AcrylateReact: Reaction tracking and management for acrylate groups
-- Data output writers (DCD, CSV) for trajectory analysis
-- Various thermodynamic ensemble methods (NVT, NPT, aNPT)
+Key Classes:
+    AmberSimulation    - Run MD with AMBER force field files (.prmtop, .inpcrd)
+    ANISimulation      - Run MD with the ANI machine-learning force field
+    GromacsSimulation  - Run MD with Gromacs-format files
+    BuildSimulation    - Base class with core energy minimisation and ensemble methods
+    AcrylateReact      - Track and manage acrylate bond formation (reactive MD)
+    DcdWriter          - Write trajectory files in DCD format
+    DataWriter         - Write simulation data (energy, temperature) to CSV
 
-Key Features:
-    - Energy minimization with configurable parameters
-    - Simulated annealing with temperature control
-    - NVT, NPT, and aNPT ensemble simulations
-    - Thermal ramps and strain simulations
-    - Acrylate bond detection and reactive MD support
-    - Checkpoint/restart capability
-    - Configurable reporter frequencies and output formats
+Simulation Ensembles Available:
+    minimize_energy()  - Remove strained geometry before dynamics
+    basic_NVT()        - Constant volume/temperature (good for heating)
+    basic_NPT()        - Constant pressure/temperature (good for production)
+    annealing()        - Simulated annealing cycles
+    thermal_ramp()     - Linear heat/cool ramp (for Tg, Tm determination)
 
-Example:
-    >>> from modules.simulation_engine import AmberSimulation
-    >>> sim = AmberSimulation(manager, topology_file, coordinates_file)
-    >>> sim.minimize_energy()
-    >>> sim.basic_NVT(total_steps=1000000, temp=298.15)
+Default Parameters (all can be overridden per call):
+    Temperature  : 298.15 K
+    Pressure     : 1.0 bar
+    Timestep     : 2 fs (0.002 ps)
+    Reporter freq: every 1000 steps
 
-Created on Wed Mar 13 13:50:12 2024
-@author: danie
+Example::
+
+    from modules.filepath_manager import PolySimManage
+    from modules.simulation_engine import AmberSimulation
+
+    manager = PolySimManage('/path/to/my_project')
+    sim = AmberSimulation(
+        manager=manager,
+        topology_file='/path/to/system.prmtop',
+        coordinates_file='/path/to/system.inpcrd'
+    )
+
+    sim.minimize_energy()                           # remove clashes
+    sim.basic_NVT(total_steps=500_000, temp=298.15)  # heat to 298 K
+    sim.basic_NPT(total_steps=1_000_000, temp=298.15, pressure=1.0)  # production
 """
 
 from typing import Optional, List, Tuple, Dict, Any, Union, Callable

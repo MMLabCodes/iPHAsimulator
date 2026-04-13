@@ -4,7 +4,7 @@ This folder contains the old `sw_*.py` module names for backward compatibility w
 
 ## What is this folder?
 
-In the refactoring to **SatisPHAction Simulator v1.1**, all core modules were renamed with descriptive names:
+In the refactoring to **iPHAsimulator v1.1**, all core modules were renamed with descriptive names:
 - `sw_basic_functions.py` → `molecule_builder.py`
 - `sw_directories.py` → `filepath_manager.py`
 - `sw_build_systems.py` → `system_builder.py`

@@ -1,8 +1,8 @@
-Quality Assurance Summary - SatisPHAction Simulator v1.1
+Quality Assurance Summary - iPHAsimulator v1.1
 
 # Comprehensive Quality Review and Fixes
 
-This document summarizes the quality assurance review conducted on the SatisPHAction Simulator project and the improvements made.
+This document summarizes the quality assurance review conducted on the iPHAsimulator project and the improvements made.
 
 ## Executive Summary
 

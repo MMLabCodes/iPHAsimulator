@@ -1,8 +1,8 @@
-# SatisPHAction Simulator - System Architecture
+# iPHAsimulator — System Architecture
 
 ## Overview
 
-SatisPHAction Simulator is a modular Python toolkit for simulating polyhydroxyalkanoate (PHA) systems using molecular dynamics. The architecture is organized around three main functional areas:
+iPHAsimulator is a modular Python toolkit for building PHA (polyhydroxyalkanoate) polymer structures and setting up DFT calculations or MD simulations. The architecture is organized around three main functional areas:
 
 ```
 ┌─────────────────────┐

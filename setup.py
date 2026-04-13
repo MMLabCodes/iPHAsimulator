@@ -1,5 +1,5 @@
 """
-Setup configuration for SatisPHAction Simulator package installation.
+Setup configuration for iPHAsimulator package installation.
 
 This file enables installation via pip and makes the package properly discoverable.
 
@@ -21,18 +21,18 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8'
     long_description = f.read()
 
 setup(
-    name='satisfaction-simulator',
+    name='iPHAsimulator',
     version='1.1.0',
-    description='SatisPHAction Simulator: Molecular Dynamics simulations for polyhydroxyalkanoate (PHA) systems',
+    description='iPHAsimulator: Build PHA polymer structures and run DFT calculations or MD simulations',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Daniel J. York, Isaac Vidal-Daza, Francisco Martin-Martinez',
     author_email='support@martinmartinezlab.com',
-    url='https://github.com/MMLabCodes/polymersimulator',
+    url='https://github.com/MMLabCodes/iPHAsimulator',
     project_urls={
-        'Documentation': 'https://polymersimulator.readthedocs.io/',
-        'Source Code': 'https://github.com/MMLabCodes/polymersimulator',
-        'Issues': 'https://github.com/MMLabCodes/polymersimulator/issues',
+        'Documentation': 'https://github.com/MMLabCodes/iPHAsimulator#readme',
+        'Source Code': 'https://github.com/MMLabCodes/iPHAsimulator',
+        'Issues': 'https://github.com/MMLabCodes/iPHAsimulator/issues',
     },
     license='MIT',
     packages=find_packages(),

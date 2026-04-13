@@ -1,50 +1,40 @@
 """
-Complex fluid model generation and analysis for chemical systems.
+iPHAsimulator - Complex Fluid Model Generator.
 
-This module provides comprehensive tools for generating, analyzing, and ranking
-complex fluid models from quantum chemistry data. It implements various modeling
-strategies including abundance-based grouping, threshold-based selection, and
-scored grouping approaches.
+This module generates, ranks, and builds complex fluid models for
+bio-oil mixture simulations. Bio-oil is a relevant feedstock for
+biological PHA production, so understanding its composition supports
+full PHA lifecycle modelling.
 
-The module works with OrcaMolecule instances to create standardized complex fluid
-representations, calculate weighted properties, and generate system-ready configurations
-for molecular dynamics or other simulations.
+The module works with OrcaMolecule instances (loaded from ORCA DFT results)
+and creates weighted fluid representations for molecular dynamics.
 
 Key Classes:
-    ComplexFluidModel: Representation of a fluid model with aggregated properties
-    ComplexFluidModels: Container for model generation and analysis methods
-    ComplexFluidModelBuilder: Builder for generating PACKMOL/AMBER configurations
+    ComplexFluidModel        - Stores a specific fluid model with weighted properties
+    ComplexFluidModels       - Generates and ranks all model variants
+    ComplexFluidModelBuilder - Creates Packmol / AMBER input from a chosen model
 
-Supported Model Types:
-    - All Model: All molecules included
-    - Fixed Threshold Model: Based on peak area threshold
-    - Proportional Threshold Model: Normalized peak area selection
-    - Abundance Grouped Model: Grouped by abundance/peak area
-    - Scored Grouped Model: Scored based on molecular properties
+Supported Model Generation Strategies:
+    All Model               - Include all molecules
+    Fixed Threshold         - Include molecules above a peak-area threshold
+    Proportional Threshold  - Normalised peak-area selection
+    Abundance Grouped       - Group by relative abundance
+    Scored Grouped          - Score and group by weighted molecular properties
 
-Example:
-    Generate and rank complex fluid models::
+Example::
 
-        from modules.complex_fluid_models_refactored import ComplexFluidModels
-        from modules.quantum_calculator import csv_to_orca_molecules
+    from modules.quantum_calculator import csv_to_orca_molecules
+    from modules.complex_fluid_models_refactored import ComplexFluidModels
+    from modules.filepath_manager import PolySimManage
 
-        # Load molecules
-        molecules = csv_to_orca_molecules('/data/molecules.csv')
+    manager   = PolySimManage('/path/to/my_project')
+    molecules = csv_to_orca_molecules('/path/to/orca_results.csv')
 
-        # Generate all models
-        models = ComplexFluidModels.gen_all_models(
-            manager=dirs,
-            model_name='bio_oil_model'
-        )
+    # Generate all model variants
+    models = ComplexFluidModels.gen_all_models(manager=manager, model_name='bio_oil')
 
-        # Rank models
-        ranked_df = ComplexFluidModels.rank_models(
-            model_df=model_data,
-            benchmark_model_idx=0
-        )
-
-Note:
-    This module requires OrcaMolecule instances with quantum chemical properties.
+    # Rank models by a criterion and pick the best one
+    ranked = ComplexFluidModels.rank_models(models, criterion='polarizability')
 """
 
 import os

@@ -1,4 +1,4 @@
-# SatisPHAction Simulator - Documentation Requirements
+# iPHAsimulator - Documentation Requirements
 #
 # CONSOLIDATED: All project dependencies are now in the root requirements.txt
 # This file is maintained for reference only.
