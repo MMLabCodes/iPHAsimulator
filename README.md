@@ -453,19 +453,106 @@ msd = analysis.plot_MSD(plot=True)
 
 ## 9. Pre-built PHA Structures
 
-iPHAsimulator ships with 29 ready-to-use PHA monomer trimer structures in the `pdb_files/molecules/` directory.
+iPHAsimulator ships with **30 ready-to-use PHA monomer trimer structures** in the `pdb_files/molecules/` directory. Each trimer is fully parameterised (head · mainchain · tail) and can be used immediately to build polymer chains of any length.
 
-| Category | Monomers Available |
-|---|---|
-| **Short-chain-length (SCL) PHAs** | 3HB, 4HB, 3HV, 2HB, 2HP |
-| **Medium-chain-length (MCL) PHAs** | 3HD, 3HHx, 3HHp, 3HO, 3HDD, 6HHx, 7HHp |
-| **Aromatic side-chain PHAs** | 3H3PhP, 3H4PhB, 3H5PhV, 3H6PhHx, 3H7PhHp, 3H8PhO, and phenoxy/fluorophenoxy variants |
-
-Naming convention: `3HB` = **3**-**H**ydroxy**B**utyrate, `3HV` = 3-HydroxyValerate, etc.
-
-Each monomer folder (`pdb_files/molecules/<name>_trimer/`) contains the parameterised head-mainchain-tail trimer that iPHAsimulator uses to build polymer chains.
+> Naming convention: `3HB` = **3**-**H**ydroxy**B**utyrate · `3HV` = **3**-**H**ydroxy**V**alerate · numbers denote carbon-chain length.
 
 ---
+
+### Short-chain-length (SCL) PHAs
+
+These monomers have side chains of 1–2 carbons. 3HB is the most widely studied PHA in nature.
+
+<p align="center">
+  <img src="docs/images/2HB_trimer.PNG" alt="2HB trimer" width="160"/>
+  <img src="docs/images/2HP_trimer.PNG" alt="2HP trimer" width="160"/>
+  <img src="docs/images/3HB_trimer.PNG" alt="3HB trimer" width="160"/>
+  <img src="docs/images/3HV_trimer.PNG" alt="3HV trimer" width="160"/>
+  <img src="docs/images/4HB_trimer.PNG" alt="4HB trimer" width="160"/>
+</p>
+<p align="center">
+  <em>2HB &nbsp;&nbsp;&nbsp; 2HP &nbsp;&nbsp;&nbsp; 3HB &nbsp;&nbsp;&nbsp; 3HV &nbsp;&nbsp;&nbsp; 4HB</em>
+</p>
+
+---
+
+### Medium-chain-length (MCL) PHAs
+
+MCL-PHAs have longer aliphatic side chains (≥ 3 carbons) giving softer, more flexible materials.
+
+<p align="center">
+  <img src="docs/images/3HD_trimer.PNG" alt="3HD trimer" width="160"/>
+  <img src="docs/images/3HHx_trimer.PNG" alt="3HHx trimer" width="160"/>
+  <img src="docs/images/3HHp_trimer.PNG" alt="3HHp trimer" width="160"/>
+  <img src="docs/images/3HO_trimer.PNG" alt="3HO trimer" width="160"/>
+  <img src="docs/images/3HDD_trimer.PNG" alt="3HDD trimer" width="160"/>
+</p>
+<p align="center">
+  <em>3HD &nbsp;&nbsp;&nbsp; 3HHx &nbsp;&nbsp;&nbsp; 3HHp &nbsp;&nbsp;&nbsp; 3HO &nbsp;&nbsp;&nbsp; 3HDD</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/6HHx_trimer.PNG" alt="6HHx trimer" width="160"/>
+  <img src="docs/images/7HHp_trimer.PNG" alt="7HHp trimer" width="160"/>
+</p>
+<p align="center">
+  <em>6HHx &nbsp;&nbsp;&nbsp; 7HHp</em>
+</p>
+
+---
+
+### Aromatic side-chain PHAs
+
+These monomers carry phenyl, phenoxy, or fluorophenoxy groups, enabling tunable optical and mechanical properties.
+
+<p align="center">
+  <img src="docs/images/3H3PhP_trimer.PNG" alt="3H3PhP trimer" width="160"/>
+  <img src="docs/images/3H4PhB_trimer.PNG" alt="3H4PhB trimer" width="160"/>
+  <img src="docs/images/3H5PhV_trimer.PNG" alt="3H5PhV trimer" width="160"/>
+  <img src="docs/images/3H6PhHx_trimer.PNG" alt="3H6PhHx trimer" width="160"/>
+  <img src="docs/images/3H7PhHp_trimer.PNG" alt="3H7PhHp trimer" width="160"/>
+</p>
+<p align="center">
+  <em>3H3PhP &nbsp;&nbsp;&nbsp; 3H4PhB &nbsp;&nbsp;&nbsp; 3H5PhV &nbsp;&nbsp;&nbsp; 3H6PhHx &nbsp;&nbsp;&nbsp; 3H7PhHp</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/3H8PhO_trimer.PNG" alt="3H8PhO trimer" width="160"/>
+  <img src="docs/images/3H4MeV_trimer.PNG" alt="3H4MeV trimer" width="160"/>
+  <img src="docs/images/3H5PxV_trimer.PNG" alt="3H5PxV trimer" width="160"/>
+  <img src="docs/images/3H6pMPxHx_trimer.PNG" alt="3H6pMPxHx trimer" width="160"/>
+  <img src="docs/images/3H6mMpXHx_trimer.PNG" alt="3H6mMpXHx trimer" width="160"/>
+</p>
+<p align="center">
+  <em>3H8PhO &nbsp;&nbsp;&nbsp; 3H4MeV &nbsp;&nbsp;&nbsp; 3H5PxV &nbsp;&nbsp;&nbsp; 3H6pMPxHx &nbsp;&nbsp;&nbsp; 3H6mMpXHx</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/3H5pMePxV_trimer.PNG" alt="3H5pMePxV trimer" width="160"/>
+  <img src="docs/images/3H5BzV_trimer.PNG" alt="3H5BzV trimer" width="160"/>
+  <img src="docs/images/3H4pMPxPB_trimer.PNG" alt="3H4pMPxPB trimer" width="160"/>
+  <img src="docs/images/3H4mMPxPB_trimer.PNG" alt="3H4mMPxPB trimer" width="160"/>
+  <img src="docs/images/3H5pFPxV_trimer.PNG" alt="3H5pFPxV trimer" width="160"/>
+</p>
+<p align="center">
+  <em>3H5pMePxV &nbsp;&nbsp;&nbsp; 3H5BzV &nbsp;&nbsp;&nbsp; 3H4pMPxPB &nbsp;&nbsp;&nbsp; 3H4mMPxPB &nbsp;&nbsp;&nbsp; 3H5pFPxV</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/3H5opF2PxV_trimer.PNG" alt="3H5opF2PxV trimer" width="160"/>
+  <img src="docs/images/3H7PxHp_trimer.PNG" alt="3H7PxHp trimer" width="160"/>
+  <img src="docs/images/3H7pFPxHP_trimer.PNG" alt="3H7pFPxHP trimer" width="160"/>
+</p>
+<p align="center">
+  <em>3H5opF2PxV &nbsp;&nbsp;&nbsp; 3H7PxHp &nbsp;&nbsp;&nbsp; 3H7pFPxHP</em>
+</p>
+
+---
+
+Each monomer folder (`pdb_files/molecules/<name>_trimer/`) contains the pre-parameterised head · mainchain · tail trimer files that iPHAsimulator uses internally to assemble polymer chains of any length.
+
+---
+
 
 ## 10. Windows Users
 
