@@ -1,13 +1,8 @@
 # iPHAsimulator
 
-<!-- Logo placeholder: replace the line below with your logo once it is ready.
-     Place the image file in docs/images/ and update the path accordingly.
-     Recommended size: 600 × 200 px, PNG or SVG format.
-
-     <p align="center">
-       <img src="docs/images/logo.png" alt="iPHAsimulator logo" width="400"/>
-     </p>
--->
+<p align="center">
+  <img src="docs/images/logo.png" alt="iPHAsimulator logo" width="400"/>
+</p>
 
 **iPHAsimulator** is an open-source Python toolkit for building polyhydroxyalkanoate (PHA) polymer structures and setting up quantum chemistry (DFT) or molecular dynamics (MD) simulations of PHAs.
 
