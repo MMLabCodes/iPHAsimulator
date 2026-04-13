@@ -1,0 +1,47 @@
+# SatisPHAction Simulator - Project Requirements
+#
+# Core dependencies for running SatisPHAction Simulator and generating documentation.
+# Install with: pip install -r requirements.txt
+
+# === Documentation Generation ===
+sphinx>=4.0                     # Documentation generator for RST/Markdown
+sphinx-rtd-theme               # Professional ReadTheDocs theme for Sphinx
+
+# === Molecular Dynamics & Chemistry ===
+parmed                          # Parse and manipulate AMBER files and topologies
+openmm                          # OpenMM for molecular dynamics simulations
+ambertools                      # AMBER suite for force field parameterization
+rdkit                           # Cheminformatics toolkit for molecular structures
+openbabel                       # Molecular structure conversion and analysis
+
+# === Scientific Computing ===
+numpy                           # Numerical computing for arrays and matrices
+pandas>=2.0.0                   # Data manipulation and analysis
+scipy                           # Scientific computing utilities
+scikit-learn                    # Machine learning for analysis workflows
+
+# === Data Analysis & Visualization ===
+matplotlib                      # 2D plotting and visualization
+seaborn                         # Statistical data visualization built on matplotlib
+nglview                         # Interactive 3D molecular visualization
+MDAnalysis                      # Trajectory analysis for MD simulations
+
+# === Installation Notes ===
+#
+# IMPORTANT: Some packages require conda installation for best compatibility.
+# Recommended installation procedure:
+#
+# 1. Create conda environment:
+#    conda create --name satisfaction python=3.11
+#
+# 2. Activate environment:
+#    conda activate satisfaction
+#
+# 3. Install conda-forge packages first (for better compatibility):
+#    conda install -c conda-forge ambertools openmm rdkit openbabel
+#
+# 4. Then install remaining pip packages:
+#    pip install -r requirements.txt
+#
+# Alternatively, use the conda environment.yml file for complete environment setup:
+#    conda env create -f environment.yml

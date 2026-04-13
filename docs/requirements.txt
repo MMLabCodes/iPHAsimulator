@@ -1,0 +1,11 @@
+# SatisPHAction Simulator - Documentation Requirements
+#
+# CONSOLIDATED: All project dependencies are now in the root requirements.txt
+# This file is maintained for reference only.
+#
+# For complete installation instructions, see:
+# - Root requirements.txt (main file with all dependencies)
+# - README.md (quick start guide)
+# - INSTALLATION.md (detailed setup instructions)
+#
+# Install with: pip install -r ../requirements.txt
