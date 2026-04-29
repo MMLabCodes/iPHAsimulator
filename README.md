@@ -191,9 +191,7 @@ SMILES strings are widely available in online chemical databases such as [PubChe
 
 ### 5.1 Setting Up a Project Directory
 
-All iPHAsimulator workflows start by creating a **project manager** object that organises your files.
-
-#### Example
+All iPHAsimulator workflows start by creating a **project manager** object that organises your files:
 
 ```python
 from modules.filepath_manager import PolySimManage
@@ -202,9 +200,6 @@ from modules.filepath_manager import PolySimManage
 PROJECT_PATH = "/path/to/my_pha_project"  # ← change this to your desired location
 
 manager = PolySimManage(PROJECT_PATH)
-
-print(f"Project directory created at: {PROJECT_PATH}")
-```
 
 ### 5.2 Building a Single PHA Monomer from SMILES
 
