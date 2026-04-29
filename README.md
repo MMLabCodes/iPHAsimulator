@@ -226,6 +226,28 @@ my_pha_project/
 └── python_scripts/      ← a place for your own scripts
 ```
 
+### 5.2 Building a Single PHA Monomer from SMILES
+
+```python
+from modules.filepath_manager import PolySimManage
+from modules.system_builder import BuildAmberSystems
+
+# Initialise project manager
+manager = PolySimManage('/path/to/my_pha_project')
+
+# Create a system builder
+builder = BuildAmberSystems(manager)
+
+# Convert a SMILES string to a 3D PDB structure file
+# This generates the 3D coordinates using Open Babel and assigns a residue code
+smiles = 'CC(O)CC(=O)O'   # 3-Hydroxybutyrate (3HB) monomer
+name   = '3HB'
+
+pdb_path = builder.SmilesToPDB_GenResCode(smiles=smiles, name=name)
+print(f'PDB file created: {pdb_path}')
+```
+
+
 ### 5.3 Parameterising a Molecule with AMBER Force Fields
 
 Before running an MD simulation, you must assign force field parameters — essentially, the physical rules that govern how atoms move and interact. iPHAsimulator automates this using AMBER's `antechamber` and `tleap` tools.
