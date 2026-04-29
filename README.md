@@ -191,35 +191,39 @@ SMILES strings are widely available in online chemical databases such as [PubChe
 
 ### 5.1 Setting Up a Project Directory
 
-All iPHAsimulator workflows start by creating a **project manager** object that organises your files:
+All iPHAsimulator workflows start by creating a **project manager** object that organises your files.
+
+First, locate the `ready_to_run_scripts` folder in the repository root and open:
+
+```
+ready_to_run_scripts/1_set_up_project_directory.py
+```
+
+In this file, replace the project path with your own:
 
 ```python
 from modules.filepath_manager import PolySimManage
 
 # Point to your working directory — iPHAsimulator will create the folder structure here
-PROJECT_PATH = "/path/to/my_pha_project"  # ← change this to your desired location
+manager = PolySimManage('/path/to/my_pha_project')  # ← change this to your own path
+```
 
-manager = PolySimManage(PROJECT_PATH)
+Then run the script from the repository root:
 
-### 5.2 Building a Single PHA Monomer from SMILES
+```bash
+cd iPHAsimulator
+python ready_to_run_scripts/1_set_up_project_directory.py
+```
 
-```python
-from modules.filepath_manager import PolySimManage
-from modules.system_builder import BuildAmberSystems
+This creates the following folder structure automatically:
 
-# Initialise project manager
-manager = PolySimManage('/path/to/my_pha_project')
-
-# Create a system builder
-builder = BuildAmberSystems(manager)
-
-# Convert a SMILES string to a 3D PDB structure file
-# This generates the 3D coordinates using Open Babel and assigns a residue code
-smiles = 'CC(O)CC(=O)O'   # 3-Hydroxybutyrate (3HB) monomer
-name   = '3HB'
-
-pdb_path = builder.SmilesToPDB_GenResCode(smiles=smiles, name=name)
-print(f'PDB file created: {pdb_path}')
+```
+my_pha_project/
+├── pdb_files/
+│   ├── molecules/       ← 3D structure files for individual molecules
+│   ├── systems/         ← assembled polymer systems ready for simulation
+│   └── residue_codes.csv  ← a database keeping track of molecule codes
+└── python_scripts/      ← a place for your own scripts
 ```
 
 ### 5.3 Parameterising a Molecule with AMBER Force Fields
