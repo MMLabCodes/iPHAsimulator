@@ -61,3 +61,18 @@ trajectories/
 # Temporary files
 *.tmp
 *.log
+
+# AmberTools / antechamber temporary files
+ANTECHAMBER_*
+ATOMTYPE.INF
+PREP.INF
+NEWPDB.PDB
+leap.log
+sqm.in
+sqm.out
+sqm.pdb
+
+# Local testing scripts
+test_PHA_project.py
+build_monomer.py
+pdb_amber.py
