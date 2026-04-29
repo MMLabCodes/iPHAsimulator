@@ -228,6 +228,11 @@ my_pha_project/
 
 ### 5.2 Building a Single PHA Monomer from SMILES
 
+This step builds a **monomer/repeating unit** from a SMILES string.  
+This monomer will later be used for **parameterisation and polymer construction**.
+
+#### Example
+
 ```python
 from modules.filepath_manager import PolySimManage
 from modules.system_builder import BuildAmberSystems
@@ -238,14 +243,61 @@ manager = PolySimManage('/path/to/my_pha_project')
 # Create a system builder
 builder = BuildAmberSystems(manager)
 
-# Convert a SMILES string to a 3D PDB structure file
-# This generates the 3D coordinates using Open Babel and assigns a residue code
-smiles = 'CC(O)CC(=O)O'   # 3-Hydroxybutyrate (3HB) monomer
-name   = '3HB'
+# Define monomer (example: R-3HB)
+smiles = "C[C@@H](O)CC(=O)O"   # R-configured 3HB monomer
+name   = "3HB"
 
 pdb_path = builder.SmilesToPDB_GenResCode(smiles=smiles, name=name)
-print(f'PDB file created: {pdb_path}')
+print(f"PDB file created: {pdb_path}")
 ```
+
+---
+
+#### Using the ready-to-run script
+
+You can also run this step using the provided script:
+
+```
+ready_to_run_scripts/2_build_monomer.py
+```
+
+Open the file and modify:
+
+- `PROJECT_PATH` → use the same path as in Step 5.1  
+- `SMILES` → choose your monomer (e.g. 3HB or 3HO)  
+- `MOLECULE_NAME` → set a name for your molecule  
+
+---
+
+#### Run the script
+
+From the repository root:
+
+```bash
+cd iPHAsimulator
+python ready_to_run_scripts/2_build_monomer.py
+```
+
+---
+
+#### Output
+
+The generated PDB file will be saved in:
+
+```
+my_pha_project/pdb_files/
+```
+
+---
+
+#### Notes
+
+- This step builds a **single monomer/repeating unit**, not the full polymer  
+- Chirality (R/S) is defined by the SMILES string  
+- For R-configured PHA systems, use `[C@@H]` in the SMILES  
+- The generated PDB represents an initial 3D structure and will be refined later  
+
+---
 
 
 ### 5.3 Parameterising a Molecule with AMBER Force Fields
