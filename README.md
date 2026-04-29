@@ -191,24 +191,19 @@ SMILES strings are widely available in online chemical databases such as [PubChe
 
 ### 5.1 Setting Up a Project Directory
 
-All iPHAsimulator workflows start by creating a **project manager** object that organises your files:
+All iPHAsimulator workflows start by creating a **project manager** object that organises your files.
+
+#### Example
 
 ```python
 from modules.filepath_manager import PolySimManage
 
 # Point to your working directory — iPHAsimulator will create the folder structure here
-manager = PolySimManage('/path/to/my_pha_project')
-```
+PROJECT_PATH = "/path/to/my_pha_project"  # ← change this to your desired location
 
-This creates the following folder structure automatically:
+manager = PolySimManage(PROJECT_PATH)
 
-```
-my_pha_project/
-├── pdb_files/
-│   ├── molecules/       ← 3D structure files for individual molecules
-│   ├── systems/         ← assembled polymer systems ready for simulation
-│   └── residue_codes.csv  ← a database keeping track of molecule codes
-└── python_scripts/      ← a place for your own scripts
+print(f"Project directory created at: {PROJECT_PATH}")
 ```
 
 ### 5.2 Building a Single PHA Monomer from SMILES
