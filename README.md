@@ -302,28 +302,70 @@ my_pha_project/pdb_files/
 
 ### 5.3 Parameterising a Molecule with AMBER Force Fields
 
-Before running an MD simulation, you must assign force field parameters — essentially, the physical rules that govern how atoms move and interact. iPHAsimulator automates this using AMBER's `antechamber` and `tleap` tools.
+Before running an MD simulation, you must assign force field parameters — essentially, the physical rules that govern how atoms move and interact. iPHAsimulator automates this using AMBER's `antechamber`, `parmchk2`, and `tleap` tools.
 
-```python
-from modules.filepath_manager import PolySimManage
-from modules.system_builder import BuildAmberSystems
-from modules.config import create_config_file
+#### How to run
 
-# First, tell iPHAsimulator where Packmol is installed (one-time setup)
-# You can find the path by running: which packmol
-create_config_file(packmol_path='/path/to/packmol')
+Navigate to the repository root, then open:
 
-# Initialise
-manager = PolySimManage('/path/to/my_pha_project')
-builder = BuildAmberSystems(manager)
-
-# Parameterise the molecule (runs antechamber + tleap automatically)
-# This creates .mol2, .frcmod, .prmtop, and .inpcrd files
-builder.parameterize_mol(name='3HB', charge=0)
-print('Parameterisation complete — AMBER force field files generated.')
+```
+ready_to_run_scripts/3_parameterise_monomer.py
 ```
 
-> **What are .prmtop and .inpcrd files?** These are the two main input files OpenMM needs to run a simulation: `.prmtop` stores the force field topology (bonds, angles, charges), and `.inpcrd` stores the starting atomic coordinates.
+Update the following variables:
+
+```python
+PROJECT_PATH = "/path/to/my_pha_project"   # ← same path used in Step 5.1
+MOLECULE_NAME = "3HB"                     # ← must match Step 5.2 output
+```
+
+Then run:
+
+```bash
+conda activate iphAsimulator
+python ready_to_run_scripts/3_parameterise_monomer.py
+```
+
+#### What this step does
+
+This script will:
+
+- Load the PDB structure generated in Step 5.2  
+- Assign atom types using GAFF/GAFF2  
+- Compute partial charges (AM1-BCC)  
+- Generate AMBER-compatible parameter files  
+
+#### Output files
+
+Files are created in:
+
+```
+my_pha_project/pdb_files/molecules/<MOLECULE_NAME>/
+```
+
+Including:
+
+- `.mol2` → atom types and charges  
+- `.frcmod` → missing force field parameters  
+- `.prepi` → residue definition (used for polymer building)  
+- `.lib` → AMBER library file  
+
+> ⚠️ **Important:** Make sure AmberTools (`antechamber`, `parmchk2`, `tleap`) is available in your environment.  
+> You can verify this by running:
+>
+> ```bash
+> which antechamber
+> which tleap
+> ```
+
+---
+
+> **What are `.prmtop` and `.inpcrd` files?**  
+> These are the main input files for MD simulations:  
+> - `.prmtop` stores the force field topology (bonds, angles, charges)  
+> - `.inpcrd` stores the starting atomic coordinates  
+>
+> These are typically generated at the **system-building stage (Step 5.4)** rather than at the monomer parameterisation step.
 
 ### 5.4 Building a Polymer (Homopolymer)
 
