@@ -16,7 +16,7 @@ iPHAsimulator is a notebook-driven Python toolkit for building, validating,
 parameterising, simulating, preprocessing, and analysing polyhydroxyalkanoate
 (PHA) oligomer systems.
 
-The current v2 workflow focuses on reproducible PHA molecular simulation
+The current workflow focuses on reproducible PHA molecular simulation
 preparation. It starts from chemically defined PHA oligomers, exports structure
 files, prepares Amber/GAFF2 and GROMACS/OpenMM simulation inputs, supports HPC
 execution patterns, and provides early analysis and PHA-enzyme docking
@@ -51,7 +51,7 @@ iPHAsimulator currently provides:
   existing enzyme–PHA trajectories; see [the contact workflow](docs/enzyme_contacts.md).
 - PHA-enzyme docking input preparation for manual HADDOCK workflows.
 
-DFT workflows are not documented as a current v2 capability.
+DFT workflows are not documented as a current capability.
 
 ## Workflow Overview
 
@@ -406,7 +406,7 @@ The package metadata also includes supporting Python dependencies such as
 ## Repository Structure
 
 ```text
-notebooks/   Guided v2 workflow notebooks.
+notebooks/   Guided workflow notebooks.
 src/         Reusable `iphasimulator` Python package code.
 examples/    Thin runnable scripts, YAML workflow examples, SLURM templates,
              and generated output under `examples/output/`.
@@ -461,7 +461,7 @@ for matched conditions, inputs, output formats and restart requirements.
 
 ## Minimal P3HB_4 Benchmark Workflow
 
-`P3HB_4` is the default small benchmark system for checking the v2 workflow.
+`P3HB_4` is the default small benchmark system for checking the workflow.
 
 1. Install the environment and start Jupyter:
 

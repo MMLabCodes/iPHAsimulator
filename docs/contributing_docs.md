@@ -96,8 +96,9 @@ does not publish the documentation.
 ## 5. Publish through the existing GitHub Pages workflow
 
 Pages must be enabled once in the repository settings (Settings → Pages →
-Source: GitHub Actions) before the workflow can deploy.
-Pages already uses GitHub Actions for this repository. Respect `main` protection:
+Source: GitHub Actions) before the workflow can deploy; until then the `deploy`
+job fails at **Configure Pages** with `Not Found`. Pages then builds through
+GitHub Actions for this repository. Respect `main` protection:
 submit a pull request and obtain its required approving review before merging.
 Do not use the account’s bypass to push directly to `main`. After review:
 

@@ -141,7 +141,7 @@ systems, the example runner can use faster temporary charge methods such as
 `--charge-method gas` or `--skip-am1-bcc`.
 
 OpenMM AMBER execution lives in `src/iphasimulator/simulation_openmm_amber_runner.py`
-and uses existing `prmtop`/`inpcrd` files. The v2 runner performs minimisation,
+and uses existing `prmtop`/`inpcrd` files. The runner performs minimisation,
 NVT equilibration, NPT equilibration when periodic box vectors are present, and a
 short production stage. Single-molecule GAFF2 outputs generated without a box are
 nonperiodic; for those inputs the runner writes an explicit skipped-NPT log.
@@ -167,7 +167,7 @@ conda install -c conda-forge ambertools openmm parmed mdtraj -y
 
 `ambertools` provides the Stage 1 command-line tools. `openmm`, `parmed`, and `mdtraj` provide the Stage 2 Python MD ecosystem.
 
-## Out of scope for v2
+## Out of scope for the initial design
 
 - docking
 - enzyme complex building
