@@ -1,0 +1,20 @@
+include README.md LICENSE LICENSE-CC-BY-4.0
+recursive-include src/iphasimulator *.py
+recursive-include src/iphasimulator/data/gromacs_mdp *.mdp
+recursive-include src/iphasimulator/data/gromacs_solvation *.itp *.mdp
+recursive-include examples *.py *.yaml *.sh
+recursive-include notebooks *.ipynb *.md
+recursive-include docs *.md *.png *.jpg
+recursive-include tests *.py
+prune src/md_simulation_scripts
+prune src/dan_example_scripts
+prune examples/output
+prune notebooks/.ipynb_checkpoints
+prune .git
+prune .vscode
+prune .venv
+prune .venv-docs
+prune structure_database
+prune build
+prune dist
+global-exclude .DS_Store *.py[cod] .env .env.* *.pem *.key

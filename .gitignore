@@ -1,0 +1,65 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Generated tutorial and workflow outputs.
+examples/output
+notebooks/.ipynb_checkpoints/
+
+# Generated PHA melts
+
+structure_database/PHA_melts/
+
+# Generated built-polymer outputs
+
+structure_database/built_PHAs/
+
+# Generated single-PHA systems
+
+structure_database/dry_phas/
+
+structure_database/solvated_phas/
+
+structure_database/solvated_ions_phas/
+
+# OpenMM outputs
+
+*.dcd
+
+# Documentation environments, generated API sources and built sites.
+.venv-docs/
+docs/_build/
+docs/autoapi/
+docs/.doctrees/
+
+# Confidential research source must never enter the public repository.
+/src/md_simulation_scripts/
+
+# Local environments, settings and credentials.
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+.vscode/
+*.code-workspace
+*.pem
+*.key
+credentials*.json
+secrets*.json
+.ipynb_checkpoints/
+
+# Builds and all locally generated structures, parameters and simulation data.
+/build/
+/dist/
+/structure_database/
+*.xtc
+*.trr
+*.tpr
+*.edr
+*.cpt
+*.chk
+*.log
