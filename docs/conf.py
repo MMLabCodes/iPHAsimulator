@@ -6,8 +6,8 @@ import tomllib
 ROOT = Path(__file__).resolve().parents[1]
 package = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
 project = "iPHAsimulator"
-author = "iPHAsimulator contributors"
-copyright = "2026, iPHAsimulator contributors"
+author = "Zhiwen Zhong, Daniel York, Francisco J. Martin-Martinez"
+copyright = "2026, Zhiwen Zhong, Daniel York, Francisco J. Martin-Martinez"
 release = package["version"]
 version = release
 

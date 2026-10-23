@@ -1,4 +1,4 @@
-include README.md LICENSE LICENSE-CC-BY-4.0
+include README.md LICENSE LICENSE-CC-BY-4.0 CITATION.cff
 recursive-include src/iphasimulator *.py
 recursive-include src/iphasimulator/data/gromacs_mdp *.mdp
 recursive-include src/iphasimulator/data/gromacs_solvation *.itp *.mdp

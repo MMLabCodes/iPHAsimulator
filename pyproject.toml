@@ -2,6 +2,11 @@
 name = "iphasimulator"
 version = "0.1.0"
 description = "PHA-specific polymer builder and simulation preparation toolkit"
+authors = [
+    { name = "Zhiwen Zhong" },
+    { name = "Daniel York" },
+    { name = "Francisco J. Martin-Martinez" },
+]
 requires-python = ">=3.10"
 dependencies = [
     "numpy",

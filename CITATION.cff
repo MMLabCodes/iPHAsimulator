@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use iPHAsimulator, please cite it as below."
+title: "iPHAsimulator"
+type: software
+version: "0.1.0"
+date-released: "2026-10-23"
+repository-code: "https://github.com/MMLabCodes/iPHAsimulator"
+url: "https://mmlabcodes.github.io/iPHAsimulator/"
+license: MIT
+authors:
+  - family-names: Zhong
+    given-names: Zhiwen
+  - family-names: York
+    given-names: Daniel
+  - family-names: Martin-Martinez
+    given-names: Francisco J.
