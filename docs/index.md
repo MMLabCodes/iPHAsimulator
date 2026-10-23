@@ -1,7 +1,9 @@
-# iPHASimulator v2
+# iPHAsimulator
+
+iPHAsimulator is the public release of the package developed internally as iPHASimulator v2.
 
 Build PHA oligomers, prepare molecular simulations, and measure their structure
-and contacts. iPHASimulator is organised around practical notebooks with reusable
+and contacts. iPHAsimulator is organised around practical notebooks with reusable
 Python helpers for polyhydroxyalkanoates (PHAs).
 
 **New here?** Follow [installation](installation.md), then the
@@ -11,7 +13,7 @@ Python helpers for polyhydroxyalkanoates (PHAs).
 
 ## Workflow overview
 
-![iPHASimulator v2 workflow: PHA design and validation, GAFF2 and CGenFF parameterisation, simulation and HPC execution, polymer and enzyme–PHA analysis, and planned database and machine-learning extensions.](iphasimulator-v2-workflow.png)
+![iPHAsimulator workflow: PHA design and validation, GAFF2 and CGenFF parameterisation, simulation and HPC execution, polymer and enzyme–PHA analysis, and planned database and machine-learning extensions.](iphasimulator-workflow.png)
 
 Numbered boxes correspond to the tutorial notebooks; dashed outlines indicate
 optional routes or planned extensions. See the [notebook catalogue](notebooks.md)
@@ -29,9 +31,10 @@ for prerequisites and run order.
 | A candidate enzyme–PHA pair | [Docking preparation](workflows/docking.md) | Inputs and records for a manual docking workflow |
 
 The teaching notebooks in `notebooks/` cover construction, parameter preparation,
-simulation setup and selected analysis examples. Research analysis in
-`src/md_simulation_scripts/` requires existing trajectories and system-specific
-paths; it is separate from the teaching sequence. Read [the notebook catalogue](notebooks.md)
+simulation setup and selected analysis examples. The research analysis scripts,
+which require existing trajectories and system-specific paths, are not included
+in the public release; the reusable contact module they built on is documented
+under [enzyme–PHA contacts](enzyme_contacts.md). Read [the notebook catalogue](notebooks.md)
 for prerequisites and run order. Documentation builds do not execute notebooks.
 
 
@@ -75,5 +78,5 @@ project_readme
 contributing_docs
 ```
 
-Source: [MMLabCodes/iPHAsimulatorV2](https://github.com/MMLabCodes/iPHAsimulatorV2).
+Source: [MMLabCodes/iPHAsimulator](https://github.com/MMLabCodes/iPHAsimulator).
 The capabilities documented here are specific to this repository.

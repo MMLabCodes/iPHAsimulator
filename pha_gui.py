@@ -17,14 +17,14 @@ from src.iphasimulator.openmmscript_builder import OpenMMScriptBuilder
 STRUCTURE_DATABASE = Path("structure_database")
 RESIDUE_CODES_CSV = STRUCTURE_DATABASE / "residue_codes.csv"
 
-MD_SCRIPT_DIR = Path("src/md_simulation_scripts")
+MD_SCRIPT_DIR = Path("examples/output/generated_md_scripts")
 MD_SCRIPT_DIR.mkdir(parents=True, exist_ok=True)
 
 AMBERTOOLS_PYTHON = Path.home() / "miniconda3/envs/AmberTools23/bin/python"
 
 
 st.set_page_config(
-    page_title="iPHAsimulatorV2",
+    page_title="iPHAsimulator",
     page_icon="🧬",
     layout="wide",
 )
@@ -118,7 +118,7 @@ div.stButton > button:hover {
 
 
 st.markdown(
-    '<div class="main-title">🧬 iPHAsimulatorV2</div>',
+    '<div class="main-title">🧬 iPHAsimulator</div>',
     unsafe_allow_html=True,
 )
 st.markdown(

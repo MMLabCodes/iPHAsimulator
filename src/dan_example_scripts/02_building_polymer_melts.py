@@ -26,7 +26,7 @@ There are a few sections
 from pathlib import Path
 import sys
 
-project_root = Path("/Users/daniel/projects/iPHAsimulatorV2")
+project_root = Path(__file__).resolve().parents[2]
 src_dir = project_root / "src"
 
 if str(src_dir) not in sys.path:

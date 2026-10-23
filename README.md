@@ -1,6 +1,8 @@
-# iPHASimulator v2
+# iPHAsimulator
 
-Documentation: [homepage](https://mmlabcodes.github.io/iPHAsimulatorV2/), [installation](docs/installation.md),
+iPHAsimulator is the public release of the package developed internally as iPHASimulator v2.
+
+Documentation: [homepage](https://mmlabcodes.github.io/iPHAsimulator/), [installation](docs/installation.md),
 [P3HB_4 quick-start](docs/quickstart.md), and
 [editing, local preview and GitHub Pages](docs/contributing_docs.md).
 The [current capability audit](docs/capabilities.md) separates runnable teaching
@@ -10,7 +12,7 @@ workflows, external-tool prerequisites and research-analysis limitations.
   <img src="docs/logo.png" alt="iPHAsimulator logo" width="400"/>
 </p>
 
-iPHASimulator v2 is a notebook-driven Python toolkit for building, validating,
+iPHAsimulator is a notebook-driven Python toolkit for building, validating,
 parameterising, simulating, preprocessing, and analysing polyhydroxyalkanoate
 (PHA) oligomer systems.
 
@@ -34,7 +36,7 @@ python -m streamlit run pha_gui.py
 
 ## What It Does
 
-iPHASimulator v2 currently provides:
+iPHAsimulator currently provides:
 
 - RDKit-based PHA oligomer generation for curated common PHAs and custom
   3-hydroxy acid monomers.
@@ -53,7 +55,7 @@ DFT workflows are not documented as a current v2 capability.
 
 ## Workflow Overview
 
-![iPHASimulator v2 workflow: PHA design and validation, GAFF2 and CGenFF parameterisation, simulation and HPC execution, polymer and enzyme–PHA analysis, and planned database and machine-learning extensions.](docs/iphasimulator-v2-workflow.png)
+![iPHAsimulator workflow: PHA design and validation, GAFF2 and CGenFF parameterisation, simulation and HPC execution, polymer and enzyme–PHA analysis, and planned database and machine-learning extensions.](docs/iphasimulator-workflow.png)
 
 Numbered boxes correspond to the tutorial notebooks; dashed outlines indicate
 optional routes or planned extensions. See the [notebook catalogue](docs/notebooks.md)
@@ -70,7 +72,7 @@ home of core package logic.
 
 ## Naming Convention
 
-iPHASimulator uses one central naming convention for PHA identifiers:
+iPHAsimulator uses one central naming convention for PHA identifiers:
 
 | Meaning | Examples |
 |---|---|
@@ -99,8 +101,8 @@ typing names manually in notebooks or scripts.
 
 ## Installation
 
-iPHASimulator v2 is installed from the GitHub repository:
-[MMLabCodes/iPHAsimulatorV2](https://github.com/MMLabCodes/iPHAsimulatorV2).
+iPHAsimulator is installed from the GitHub repository:
+[MMLabCodes/iPHAsimulator](https://github.com/MMLabCodes/iPHAsimulator).
 
 These instructions assume you are using a terminal on Linux, macOS, or Windows
 with WSL. The terminal is the application where you type commands such as
@@ -111,7 +113,7 @@ with WSL. The terminal is the application where you type commands such as
 Install Miniconda or Anaconda first if `conda` is not already available on your
 computer. Conda is not normally installed with `pip`; it is a separate Python
 and software environment manager. Conda creates an isolated environment, so the
-packages for iPHASimulator v2 do not interfere with other Python projects.
+packages for iPHAsimulator do not interfere with other Python projects.
 
 Recommended options:
 
@@ -139,7 +141,7 @@ After installing Conda, open a new terminal and check that it works:
 conda --version
 ```
 
-### 2. Download iPHASimulator v2
+### 2. Download iPHAsimulator
 
 The easiest way to download the repository is with `git`. First check whether
 `git` is installed:
@@ -162,28 +164,28 @@ from GitHub:
 
 ```bash
 cd ~
-git clone https://github.com/MMLabCodes/iPHAsimulatorV2.git
-cd iPHAsimulatorV2
+git clone https://github.com/MMLabCodes/iPHAsimulator.git
+cd iPHAsimulator
 ```
 
 If you do not use `git`, open the GitHub page in a browser, click **Code**,
 choose **Download ZIP**, unzip the folder, and then open a terminal inside the
-unzipped folder. The folder may be named `iPHAsimulatorV2` or
-`iPHAsimulatorV2-main`, depending on how it was downloaded
+unzipped folder. The folder may be named `iPHAsimulator` or
+`iPHAsimulator-main`, depending on how it was downloaded
 
 ### 3. Create and Activate the Environment
 
 Create a new conda environment with Python 3.11:
 
 ```bash
-conda create -n iphasimulator_v2 python=3.11
-conda activate iphasimulator_v2
+conda create -n iphasimulator python=3.11
+conda activate iphasimulator
 ```
 
 If conda asks `Proceed ([y]/n)?`, type `y` and press Enter.
 
 When the environment is active, your terminal prompt should usually start with
-`(iphasimulator_v2)`.
+`(iphasimulator)`.
 
 ### 4. Install the Python Package
 
@@ -212,7 +214,7 @@ the package.
 Run these commands from the same activated environment:
 
 ```bash
-python -c "import iphasimulator; print('iPHASimulator import OK')"
+python -c "import iphasimulator; print('iPHAsimulator import OK')"
 python -c "from rdkit import Chem; import openmm; import parmed; import mdtraj; import streamlit; print('Python dependencies OK')"
 ```
 
@@ -226,7 +228,7 @@ Activate the same Conda environment, move to the repository root, and start the
 interface with:
 
 ```bash
-conda activate iphasimulator_v2
+conda activate iphasimulator
 python -m streamlit run pha_gui.py
 ```
 
@@ -239,7 +241,7 @@ If Python reports `No module named 'streamlit'`, confirm that the correct Conda
 environment is active and install the GUI dependencies again:
 
 ```bash
-conda activate iphasimulator_v2
+conda activate iphasimulator
 python -m pip install -e ".[gui]"
 ```
 
@@ -356,20 +358,17 @@ are written under `examples/output/`, which is ignored by Git.
 
 ## Testing the Installation
 
-For the enzyme–PHA contact workflow, open
-[`src/md_simulation_scripts/enzyme_contacts/enzyme_contacts.ipynb`](https://github.com/MMLabCodes/iPHAsimulatorV2/blob/main/src/md_simulation_scripts/enzyme_contacts/enzyme_contacts.ipynb)
-or run `python src/md_simulation_scripts/enzyme_contacts/run_enzyme_contacts.py src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml`.
-This defaults to a labelled preview. Add `--full` for every configured sampled
-frame. Install the optional dependencies with `python -m pip install -e ".[analysis]"`
-if needed. See [configuration, verified inputs and validation](docs/enzyme_contacts.md)
-before interpreting results.
-
-The main verification suite is in `tests/`. After installing the package, run the
-tests from the repository root with `pytest`:
+The verification suite is in `tests/`. After installing the package, run it from
+the repository root:
 
 ```bash
-python -m pytest tests
+python -m pytest -q
 ```
+
+The suite runs without external MD tools; the tests that need MDAnalysis are
+skipped when it is not installed. For a first end-to-end check that needs only
+RDKit, open `notebooks/01_build_pha_oligomer.ipynb` with `jupyter lab notebooks/`
+or follow the [P3HB_4 quick-start](docs/quickstart.md).
 
 Individual workflow areas can also be checked by running a specific test file:
 
@@ -467,7 +466,7 @@ for matched conditions, inputs, output formats and restart requirements.
 1. Install the environment and start Jupyter:
 
    ```bash
-   conda activate iphasimulator_v2
+   conda activate iphasimulator
    jupyter lab notebooks/
    ```
 
@@ -501,7 +500,7 @@ for matched conditions, inputs, output formats and restart requirements.
 ## Developer Documentation
 
 - [Developer guide](docs/developer_guide.md)
-- [Notebook guide](https://github.com/MMLabCodes/iPHAsimulatorV2/blob/main/notebooks/README.md)
+- [Notebook catalogue](docs/notebooks.md); the notebook guide is `notebooks/README.md`
 
 ## Roadmap
 
@@ -514,7 +513,7 @@ for matched conditions, inputs, output formats and restart requirements.
 ## Citation and Acknowledgements
 
 Citation information will be added before publication or formal release. Until
-then, please cite the repository URL and acknowledge the iPHASimulator v2
+then, please cite the repository URL and acknowledge the iPHAsimulator
 development team and SATISPHACTION project funding (EIC Pathfinder) when using this software in research outputs.
 
 Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union, European Innovation Council and SMEs Executive Agency (EISMEA). 

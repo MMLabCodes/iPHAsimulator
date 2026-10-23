@@ -17,16 +17,16 @@ force field, a production trajectory or a binding prediction.
 | Polymer benchmark | 10: six-system GAFF2/GROMACS batch workflow | External engines and storage; its execution cell runs preparation and may submit with sbatch; separate from a single enzyme simulation |
 | Docking inputs | 11: whole-polymer GRO-to-PDB export and manual HADDOCK records | Benchmark frame/topology or other reviewed docking source; no automated submission |
 | Teaching analysis | 08/09: GROMACS preprocessing and Rg/end-to-end/SASA; 12: enzyme stability | Existing matching trajectories/topologies; machine-specific paths and selections must be replaced |
-| Research contacts | Separate contact notebook/CLI under `src/md_simulation_scripts/enzyme_contacts/` | Matching periodic trajectory/topology; sampled proximity does not establish affinity or catalysis |
+| Research contacts | `iphasimulator.analysis_contacts` module and CLI (`python -m iphasimulator.analysis_contacts CONFIG`); the research notebook and configuration are not included in the public release | Matching periodic trajectory/topology; sampled proximity does not establish affinity or catalysis |
 | Database construction | `PHAPolymerBuilder` and prepin/trimer route | Open Babel/AmberTools and manually supplied head/main/tail definitions; distinct from RDKit tutorials |
 | Packing, GUI, script builders | Additional advanced interfaces | Not a unified validated production pipeline |
 
 ## Validation and remaining limits
 
-The maintained `tests/` suite is the test entry point. Bare repository-wide pytest
-also discovers a legacy `src/dan_example_scripts/test_openmm_script_builder.py`
-whose constructor call uses an obsolete `root_dir` argument; it is outside these
-teaching routes. Research datasets are not distributed as tutorial trajectories.
+The maintained `tests/` suite is the test entry point, and `pytest` is configured
+to collect only that directory. The legacy
+`src/dan_example_scripts/test_openmm_script_builder.py` calls the builder with an
+obsolete `root_dir` argument; it is outside these teaching routes. Research datasets are not distributed as tutorial trajectories.
 A notebook's saved outputs do not validate new inputs.
 
 Schema/syntax checks and short execution can establish runnable preparation and

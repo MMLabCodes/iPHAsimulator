@@ -1,9 +1,9 @@
 # Trajectory preprocessing
 
-For the **standalone Bash/GROMACS** enzyme–PHA workflow, use the
-[preparation guide](../enzyme_trajectory_processing.md). It preserves all processed
-frames for analysis and writes a separate reduced trajectory for VMD. The shared
-Python helper workflow below remains available unchanged.
+For the **configuration-driven** enzyme–PHA workflow (`ipha-process-trajectory`),
+use the [preparation guide](../enzyme_trajectory_processing.md). It preserves all
+processed frames for analysis and writes a separate first-frame structure and VMD
+script. The shared Python helper workflow below remains available unchanged.
 
 **Inputs:** a matching GROMACS trajectory, topology and index. **Outputs:**
 centered/wrapped coordinates, an optional fitted trajectory and a representative

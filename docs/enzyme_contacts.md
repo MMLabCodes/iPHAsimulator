@@ -6,46 +6,48 @@ estimating affinity, assigning catalytic activity, or claiming convergence.
 
 ## Run it
 
-Use the existing `ipha_clean` environment, which has the required dependencies.
-The system Homebrew `python3` lacks MDAnalysis and matplotlib. From the project
-root, run the preview:
+Install the optional analysis dependencies (MDAnalysis and matplotlib) with
+`python -m pip install -e ".[analysis]"`, write a YAML configuration as described
+in the next section, and run the preview from the repository root:
 
 ```bash
-cd /Users/k20098771/opt/iPHASimulator_v2
-/opt/homebrew/Caskroom/miniconda/base/envs/ipha_clean/bin/python src/md_simulation_scripts/enzyme_contacts/run_enzyme_contacts.py src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml
+python -m iphasimulator.analysis_contacts <path-to-your-data>/contacts.yaml
 ```
 
 Run the **full analysis** with:
 
 ```bash
-/opt/homebrew/Caskroom/miniconda/base/envs/ipha_clean/bin/python src/md_simulation_scripts/enzyme_contacts/run_enzyme_contacts.py src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml --full
+python -m iphasimulator.analysis_contacts <path-to-your-data>/contacts.yaml --full
 ```
 
-With the supplied YAML, full means both modes on all 14,806 stored frames over
-0–1480.5 ns, including the initial frame. It does not discard equilibration.
-`python -m iphasimulator.analysis_contacts CONFIG --full` is equivalent.
+With the project's research configuration, full meant both modes on all 14,806
+stored frames over 0–1480.5 ns, including the initial frame. It does not discard
+equilibration.
 
-Alternatively open
-[`src/md_simulation_scripts/enzyme_contacts/enzyme_contacts.ipynb`](../src/md_simulation_scripts/enzyme_contacts/enzyme_contacts.ipynb),
-select a kernel using the `ipha_clean` interpreter, set `PREVIEW_FRAMES = None`
-in its configuration cell, and run that cell and all following cells. The
-notebook defaults to a 31-frame preview. Both interfaces use the same package
-functions and create a new timestamped directory on every run.
-
-In another environment, install from the repository with
-`python -m pip install -e ".[analysis]"`. A notebook also needs Jupyter/IPython
-and an appropriate kernel. No package installation was needed for validation.
+A research notebook wrapping the same package functions produced the validation
+record below; it is not included in the public release. Every run creates a new
+timestamped directory.
 
 ## Configuration and sampling
 
-Edit [`src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml`](../src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml).
+Write a YAML file with the settings below; the research configuration is not
+included in the public release. A minimal example:
+
+```yaml
+topology: <path-to-your-data>/step7_production.tpr
+trajectory: <path-to-your-data>/production_combined_1us.xtc
+output_root: examples/output/enzyme_contacts
+protein_selection: protein
+pha_selection: resname LIG and segid seg_1_LIG
+preview_frames: 31
+```
+
 Relative paths are resolved against the YAML file's directory. The reusable
 module contains no simulation-specific paths or ligand-residue assumption.
 
-After using the [standalone preparation workflow](enzyme_trajectory_processing.md),
+After using the [preparation workflow](enzyme_trajectory_processing.md),
 set `topology` to the matching production TPR and `trajectory` to the full
-`analysis/processed.xtc`, not its reduced VMD preview. The moved configuration
-and notebook retain their previous raw-input defaults and ignored output location.
+processed trajectory, not its reduced VMD preview.
 Centring/wrapping does not remove the need for the per-frame periodic-distance
 calculation below; do not supply rotationally fitted coordinates with an unrotated box.
 
@@ -129,8 +131,9 @@ sampling is therefore slightly irregular, which is recorded explicitly.
 
 ## Outputs and reuse
 
-All outputs are inside a fresh directory under `examples/output/enzyme_contacts/`.
-These generated files are ignored by Git.
+All outputs are inside a fresh directory under the configured `output_root`. The
+validation record below used `examples/output/enzyme_contacts/`, which is ignored
+by Git.
 
 | File | Contents |
 | --- | --- |
@@ -180,7 +183,7 @@ Run directory:
 `examples/output/enzyme_contacts/20260907T132220_010222Z_preview_895d7808/`.
 
 The matching inputs were inspected directly in
-`/Users/k20098771/Data/MD_projects/PHA/MD_data/gromacs/PHA_Enzyme/GK13_P3HO_4_gromacs/`:
+`<path-to-your-data>/GK13_P3HO_4_gromacs/`:
 `step7_production.tpr` and **only** `production_combined_1us.xtc`. Continuation
 files and other merged trajectories were not concatenated or analysed.
 
@@ -222,8 +225,8 @@ inspected for axes, units, readable identities, shared distance scale, missing
 rows and occupancy limits.
 
 All seven notebook code cells were also executed sequentially and headlessly
-in `ipha_clean`, starting from `src/md_simulation_scripts/`, without substituting
-their source. The notebook produced a second fresh preview at
+in `ipha_clean`, from the research notebook's own folder (not included in the
+public release), without substituting their source. The notebook produced a second fresh preview at
 `examples/output/enzyme_contacts/20260907T133200_068659Z_preview_154678c6/`;
 its frame indices and both distance matrices match the terminal preview exactly,
 including NaNs. The primary preview's `notebook_execution.json` and
@@ -241,7 +244,7 @@ SciPy 1.17.1, pandas 2.3.3 and matplotlib 3.10.9; provenance records these.
 Automated checks:
 
 ```bash
-/opt/homebrew/Caskroom/miniconda/base/envs/ipha_clean/bin/python -m pytest tests/test_analysis_contacts.py -q
+python -m pytest tests/test_analysis_contacts.py -q
 ```
 
 **17 focused tests passed**, including known distances, orthorhombic/triclinic

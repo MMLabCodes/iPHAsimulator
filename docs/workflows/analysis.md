@@ -10,28 +10,27 @@ selected PHA heavy atoms. It supports all-heavy and side-chain-heavy modes,
 preserves residue identities and unavailable glycine side chains, and reports
 the percentage of sampled frames below each contact cutoff.
 
-1. Open [the contact notebook](../notebooks.md#execution-and-analysis).
-2. Set `TPR_PATH`, `TRAJECTORY_PATH` and `OUTPUT_DIR` in step 1. Use a matching
-   TPR and one original production XTC, or the full `processed.xtc` from the
-   [standalone preparation workflow](../enzyme_trajectory_processing.md). The
-   notebook retains its previous `step6.2_npt.tpr`/raw-XTC defaults; update both
-   paths for your prepared system.
-3. Review the protein/PHA selections, time window, sampling and cutoffs. The
-   notebook starts with a 31-frame preview; `PREVIEW_FRAMES = None` requests the
-   full selected analysis.
-4. Run the input checks and analysis. Four PNG plots are saved and displayed.
-5. Inspect `residue_summary.csv`, `distances.npz` and the saved provenance.
+1. Write a YAML configuration with `topology`, `trajectory`, `output_root` and
+   `pha_selection` (all keys are listed under
+   [configuration and sampling](../enzyme_contacts.md#configuration-and-sampling)).
+   Use a matching TPR and one original production XTC, or the full processed
+   trajectory from the [preparation workflow](../enzyme_trajectory_processing.md).
+   Relative paths resolve against the YAML file's directory.
+2. Review the protein/PHA selections, time window, sampling and cutoffs. The
+   default `preview_frames: 31` gives a preview; `preview_frames: null` or the
+   `--full` flag requests the full selected analysis.
+3. Run the input checks and analysis from the repository root:
 
-For terminal runs, edit a copy of the
-{download}`contact configuration <../../src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml>`:
+   ```bash
+   python -m iphasimulator.analysis_contacts <path-to-your-data>/contacts.yaml
+   ```
 
-```bash
-python src/md_simulation_scripts/enzyme_contacts/run_enzyme_contacts.py src/md_simulation_scripts/enzyme_contacts/GK13_P3HO_4.yaml
-```
+   Four PNG plots are saved.
+4. Inspect `residue_summary.csv`, `distances.npz` and the saved provenance.
 
-Add `--full` for all configured sampled frames. The original YAML uses
-`step7_production.tpr`; notebook overrides are local to the notebook and do not
-edit that YAML. Configure your own paths explicitly in whichever interface you use.
+Add `--full` for all configured sampled frames. The research notebook and the
+configuration used for the project's own simulations are not included in the
+public release; configure your own paths explicitly.
 
 Distances use Å, time uses ns, occupancy uses 0–100%. A residue contributes once
 per sampled frame when `distance < cutoff`; default comparisons are 4.0, 4.5 and

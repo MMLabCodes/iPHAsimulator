@@ -1,4 +1,4 @@
-# iPHASimulator v2 Design
+# iPHAsimulator Design
 
 > **Historical design notes:** this document is preserved from the earlier
 > implementation. Some scope/status statements below predate the current
@@ -185,4 +185,4 @@ minimisation/NVT/NPT/production templates, not the separate six-stage membrane
 template described in the historical design notes above. Consult the
 [notebook catalogue](notebooks.md) and [06B–06C comparison](workflows/optional_openmm.md)
 for current filenames, dependencies and conditions. Research scripts are maintained
-separately under `src/md_simulation_scripts/`.
+separately and are not included in the public release.

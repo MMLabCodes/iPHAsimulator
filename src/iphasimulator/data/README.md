@@ -1,4 +1,4 @@
-# iPHASimulator Package Data
+# iPHAsimulator Package Data
 
 This folder stores templates and parameter files used by workflow helpers.
 It stays as package data and is not flattened into root-level Python modules.

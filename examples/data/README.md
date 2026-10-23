@@ -25,7 +25,7 @@ CHARMM-GUI download (job 9000069110). It is the default input of
 | `gromacs/toppar/*.itp` | `forcefield.itp`, `PROA.itp`, `LIG.itp`, `TIP3.itp`, `SOD.itp`, `CLA.itp` |
 | `gromacs/index.ndx` | Index groups, including `SOLU`/`SOLV` used by the mdp files |
 | `lig/lig.rtf`, `lig/lig.prm` | CGenFF topology and parameters for the PHA (`LIG`), with penalty scores |
-| `PHB4_R.sdf` | The R-configured PHA structure uploaded to Ligand Reader & Modeler (from iPHASimulator) |
+| `PHB4_R.sdf` | The R-configured PHA structure uploaded to Ligand Reader & Modeler (from iPHAsimulator) |
 
 The files are byte-identical copies of the download (and of `PHB4_R.sdf`). This download
 has no `lig/lig_g.rtf`. In Solution Builder: Upload `lig_g.rtf` as topology and `lig.prm` as

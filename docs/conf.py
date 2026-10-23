@@ -5,9 +5,9 @@ import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 package = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
-project = "iPHASimulator v2"
-author = "iPHASimulator contributors"
-copyright = "2026, iPHASimulator contributors"
+project = "iPHAsimulator"
+author = "iPHAsimulator contributors"
+copyright = "2026, iPHAsimulator contributors"
 release = package["version"]
 version = release
 
@@ -39,7 +39,7 @@ html_theme = "sphinx_rtd_theme"
 html_logo = "logo.png"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-html_title = "iPHASimulator v2 documentation"
+html_title = "iPHAsimulator documentation"
 html_theme_options = {
     "logo_only": False,
     "navigation_depth": 3,
@@ -49,7 +49,7 @@ html_theme_options = {
 html_context = {
     "display_github": True,
     "github_user": "MMLabCodes",
-    "github_repo": "iPHAsimulatorV2",
+    "github_repo": "iPHAsimulator",
     "github_version": "main",
     "conf_py_path": "/docs/",
 }

@@ -95,19 +95,21 @@ does not publish the documentation.
 
 ## 5. Publish through the existing GitHub Pages workflow
 
+Pages must be enabled once in the repository settings (Settings → Pages →
+Source: GitHub Actions) before the workflow can deploy.
 Pages already uses GitHub Actions for this repository. Respect `main` protection:
 submit a pull request and obtain its required approving review before merging.
 Do not use the account’s bypass to push directly to `main`. After review:
 
 1. Commit to a topic branch and merge the approved pull request to `main` in
-   `MMLabCodes/iPHAsimulatorV2`.
+   `MMLabCodes/iPHAsimulator`.
 2. In the repository, open **Settings → Pages → Build and deployment** and set
    **Source: GitHub Actions**.
 3. Under **Actions**, run the **Documentation** workflow on `main` (or allow a
    subsequent push to trigger it).
 4. Check the `build` and `deploy` jobs and use the URL shown by the `github-pages`
    deployment environment. The expected project URL is
-   `https://mmlabcodes.github.io/iPHAsimulatorV2/`.
+   `https://mmlabcodes.github.io/iPHAsimulator/`.
 
 The workflow builds on pull requests with read-only repository permissions and
 uploads a preview artifact. **Pull requests never deploy**, including fork PRs.

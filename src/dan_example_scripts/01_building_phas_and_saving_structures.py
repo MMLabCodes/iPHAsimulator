@@ -27,7 +27,7 @@ There are a few sections
 from pathlib import Path
 import sys
 
-project_root = Path("/Users/daniel/projects/iPHAsimulatorV2")
+project_root = Path(__file__).resolve().parents[2]
 src_dir = project_root / "src"
 
 if str(src_dir) not in sys.path:
@@ -44,7 +44,7 @@ if str(src_dir) not in sys.path:
 from iphasimulator.visualisation.visualiser import *
 
 # Define residue code csv - hardcoded for ease (this will need chainging as this is an absolute path)
-residue_codes_csv = "/Users/daniel/projects/iPHAsimulatorV2/structure_database/residue_codes.csv"
+residue_codes_csv = str(project_root / "structure_database" / "residue_codes.csv")
 
 # Save an image of all available PHA monomers
 plot_available_PHA_monomers(
@@ -139,7 +139,7 @@ print(f"""
 4. Validating and visualising PHA polymers
 """
 # Define polymer smiles code csv - hardcoded for ease (this will need chainging as this is an absolute path)
-polymer_smiles_csv = "/Users/daniel/projects/iPHAsimulatorV2/structure_database/polymer_smiles.csv"
+polymer_smiles_csv = str(project_root / "structure_database" / "polymer_smiles.csv")
 
 # Output a plot of all available PHA polymers - these are built from SMILES so some may look strange
 show_available_PHA_polymers(

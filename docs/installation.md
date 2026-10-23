@@ -6,8 +6,8 @@ Use a terminal on Linux, macOS, or Windows with WSL. For an existing checkout,
 change into its directory; otherwise:
 
 ```bash
-git clone https://github.com/MMLabCodes/iPHAsimulatorV2.git
-cd iPHAsimulatorV2
+git clone https://github.com/MMLabCodes/iPHAsimulator.git
+cd iPHAsimulator
 ```
 
 ## 2. Create a Python environment

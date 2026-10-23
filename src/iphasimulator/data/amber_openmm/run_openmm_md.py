@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Staged OpenMM MD for an Amber system (system.prmtop / system.inpcrd).
 
-Written by iPHASimulator (notebook 06C). The stages and file names mirror
+Written by iPHAsimulator (notebook 06C). The stages and file names mirror
 the GROMACS run folders: step6.0_minimization, step6.1_nvt, step6.2_npt and
 step7_production. All settings come from protocol.json next to this script.
 
@@ -14,7 +14,7 @@ Each stage starts from the previous stage's state (<stage>.xml) and writes
 <stage>.dcd frames. Every MD stage resumes from its own <stage>.chk and validates
 its input fingerprint from <stage>.restart.json. Completed stages take no new steps.
 Keep system.prmtop, system.inpcrd, this file and protocol.json together; OpenMM is
-required, but an iPHASimulator installation is not.
+required, but an iPHAsimulator installation is not.
 """
 
 from __future__ import annotations

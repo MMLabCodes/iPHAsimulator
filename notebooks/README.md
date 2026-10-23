@@ -2,7 +2,7 @@
 
 ## Design goal
 
-iPHASimulator v2 serves two purposes:
+iPHAsimulator serves two purposes:
 
 1. **A package** that builds PHA oligomers with RDKit and prepares molecular dynamics (MD) systems from them.
 2. **The author's research**: MD of enzyme + PHA systems.
@@ -67,7 +67,7 @@ CHARMM-style water and ion files. Its PHA force field (GAFF2) therefore differs 
 production runs (06B, CGenFF).
 
 The enzyme–PHA production simulations (GK13/ANC45 × P3HO_4/P3HB_4) used **06B**.
-Their input structures were iPHASimulator's R-configured SDF/PDB files (for example
+Their input structures were iPHAsimulator's R-configured SDF/PDB files (for example
 `PHB4_R.sdf`); CGenFF assigned all atom types, charges and parameters, so no GAFF2
 charges enter them.
 
@@ -150,7 +150,7 @@ machine-specific research paths that must be replaced. 10 is a benchmark launche
 and 11 precedes enzyme MD rather than following it: its default input comes from
 10’s polymer-only run. You can use a reviewed docked complex from another source.
 
-Research workflows under `src/md_simulation_scripts/` are separate: the reusable
-contact notebook and CLI require matching periodic topology/trajectory inputs and
-system-specific selections. 06C writes DCD/PDB/CSV, while 08/12 expect GROMACS
+Research workflows are not included in the public release; the reusable contact
+CLI (`python -m iphasimulator.analysis_contacts CONFIG`) requires matching periodic
+topology/trajectory inputs and system-specific selections. 06C writes DCD/PDB/CSV, while 08/12 expect GROMACS
 XTC/TPR/EDR; their paths cannot simply be swapped to OpenMM outputs.

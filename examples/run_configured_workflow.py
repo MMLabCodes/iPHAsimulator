@@ -1,4 +1,4 @@
-"""Run an iPHASimulator workflow from a YAML config."""
+"""Run an iPHAsimulator workflow from a YAML config."""
 
 from __future__ import annotations
 
