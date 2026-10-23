@@ -510,6 +510,26 @@ for matched conditions, inputs, output formats and restart requirements.
 - Enzyme-polymer MD workflows from reviewed docking poses.
 - ML potential and database support for future screening workflows.
 
+## Release Notes
+
+### 0.1.0 (2026-10-23) — first public release
+
+- PHA oligomer and polymer building from the common monomers (3HB, 3HO, 3HDD)
+  or custom 3-hydroxy acids, with R-configuration checks and PDB/SDF export.
+- Tutorial notebooks 01–12: GAFF2 and CGenFF parameterisation, GROMACS/OpenMM
+  simulation preparation, HPC execution, trajectory preprocessing, polymer
+  analysis, a benchmark batch, docking input preparation and stability diagnostics.
+- The `ipha-process-trajectory` command-line tool and the Streamlit GUI (`pha_gui.py`).
+- Known limitations: custom-monomer R checks rely on the CIP label, so side
+  chains that outrank the backbone (e.g. vinyl, isopropyl, CH2OMe) give the
+  mirror geometry; 06A combines a GAFF2 solute with CHARMM-style TIP3P water and
+  ions; the optional OpenMM route in 06C is a template that does not run
+  end-to-end as written; the benchmark systems used AM1-BCC charges while the
+  package default is ABCG2.
+
+Full notes and downloadable packages are on the
+[GitHub releases page](https://github.com/MMLabCodes/iPHAsimulator/releases).
+
 ## Citation and Acknowledgements
 
 Citation information will be added before publication or formal release. Until
