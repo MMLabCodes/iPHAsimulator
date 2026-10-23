@@ -39,6 +39,7 @@ docs/.doctrees/
 
 # Local environments, settings and credentials.
 .venv/
+.venv-release/
 venv/
 env/
 .env
