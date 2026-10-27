@@ -2,6 +2,8 @@
 
 iPHAsimulator is the public release of the package developed internally as iPHASimulator v2.
 
+Online GUI (no installation needed): <https://iphasimulatorv2.onrender.com/>
+
 Documentation: [homepage](https://mmlabcodes.github.io/iPHAsimulator/), [installation](docs/installation.md),
 [P3HB_4 quick-start](docs/quickstart.md), and
 [editing, local preview and GitHub Pages](docs/contributing_docs.md).
@@ -28,7 +30,14 @@ It focuses on developing next-generation, fully biodegradable PHA-based material
 
 ## Launch the GUI
 
-From the repository root, launch the Streamlit interface with:
+The graphical interface is hosted online at
+<https://iphasimulatorv2.onrender.com/>. Open that address in a web browser to
+build, validate and export PHA oligomers without installing anything locally.
+The free hosting tier sleeps when idle, so the first visit may take a minute to
+load.
+
+To run the same interface locally from the repository root, launch Streamlit
+with:
 
 ```bash
 python -m streamlit run pha_gui.py
@@ -219,6 +228,10 @@ python -c "from rdkit import Chem; import openmm; import parmed; import mdtraj; 
 ```
 
 ### 6. Start the Graphical Interface
+
+The graphical interface is also available online at
+<https://iphasimulatorv2.onrender.com/>, which needs no local installation.
+The steps below are for running it on your own computer.
 
 The graphical interface is provided by `pha_gui.py` and requires Streamlit.
 Streamlit is installed automatically when you use the
@@ -519,7 +532,8 @@ for matched conditions, inputs, output formats and restart requirements.
 - Tutorial notebooks 01–12: GAFF2 and CGenFF parameterisation, GROMACS/OpenMM
   simulation preparation, HPC execution, trajectory preprocessing, polymer
   analysis, a benchmark batch, docking input preparation and stability diagnostics.
-- The `ipha-process-trajectory` command-line tool and the Streamlit GUI (`pha_gui.py`).
+- The `ipha-process-trajectory` command-line tool and the Streamlit GUI (`pha_gui.py`),
+  also hosted online at <https://iphasimulatorv2.onrender.com/>.
 - Known limitations: custom-monomer R checks rely on the CIP label, so side
   chains that outrank the backbone (e.g. vinyl, isopropyl, CH2OMe) give the
   mirror geometry; 06A combines a GAFF2 solute with CHARMM-style TIP3P water and
