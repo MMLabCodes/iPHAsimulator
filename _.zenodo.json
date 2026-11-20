@@ -1,0 +1,48 @@
+{
+  "title": "iPHAsimulator",
+  "upload_type": "software",
+  "version": "0.1.0",
+  "description": "<p>iPHAsimulator is a notebook-driven Python toolkit for building, validating, parameterising, simulating, preprocessing and analysing polyhydroxyalkanoate (PHA) oligomer systems. It generates chemically defined PHA oligomers, prepares Amber/GAFF2, GROMACS and OpenMM simulation inputs, supports HPC execution, and provides trajectory analysis and enzyme&ndash;PHA contact workflows.</p><p>Developed at King's College London within the EU EIC Pathfinder project SATISPHACTION (https://satisphaction.eu/).</p><p>Documentation: https://mmlabcodes.github.io/iPHAsimulator/</p>",
+  "creators": [
+    {
+      "name": "Zhong, Zhiwen",
+      "affiliation": "King's College London",
+      "orcid": "0000-0001-8950-6371"
+    },
+    {
+      "name": "York, Daniel",
+      "affiliation": "Swansea University",
+      "orcid": "0000-0002-4038-9239"
+    },
+    {
+      "name": "Martin-Martinez, Francisco J.",
+      "affiliation": "King's College London",
+      "orcid": "0000-0001-7149-5512"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "polyhydroxyalkanoates",
+    "PHA",
+    "biodegradable polymers",
+    "molecular dynamics",
+    "GROMACS",
+    "OpenMM",
+    "AmberTools",
+    "GAFF2",
+    "RDKit",
+    "SATISPHACTION"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/MMLabCodes/iPHAsimulator",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://mmlabcodes.github.io/iPHAsimulator/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}
